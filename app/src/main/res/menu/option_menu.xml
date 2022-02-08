@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_0"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="create"
+        app:showAsAction="ifRoom">
+
+    </item>
+    <item
+        android:id="@+id/menu"
+        android:icon="@android:drawable/ic_menu_more"
+        android:title=""
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/menu_1"
+                android:icon="@android:drawable/ic_menu_today"
+                android:title="New Menu"
+                app:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/menu_2"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="Settings"
+                app:showAsAction="ifRoom">
+                <menu>
+                    <item
+                        android:id="@+id/sub_menu1"
+                        android:icon="@android:drawable/ic_menu_share"
+                        android:title="Text Size"
+                        app:showAsAction="ifRoom" />
+                    <item
+                        android:id="@+id/sub_menu2"
+                        android:icon="@android:drawable/ic_menu_camera"
+                        android:title="Text Style"
+                        app:showAsAction="ifRoom" />
+                </menu>
+            </item>
+            <item
+                android:id="@+id/menu_3"
+                android:icon="@android:drawable/ic_menu_close_clear_cancel"
+                android:title="Exit"
+                app:showAsAction="ifRoom" />
+        </menu>
+    </item>
+
+</menu>
