@@ -3,10 +3,16 @@ package com.adhito.inixindo_task_individual;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +20,12 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class FormFragment extends Fragment {
+
+    Spinner spinner;
+    Button btn_form_save;
+    Fragment fragment;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,6 +70,23 @@ public class FormFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_form, container, false);
+
+        EditText form_edit_name = (EditText) view.findViewById(R.id.form_edit_name);
+        EditText form_edit_email = (EditText) view.findViewById(R.id.form_edit_email);
+
+        btn_form_save = view.findViewById(R.id.btn_form_save);
+
+        String name = form_edit_name.getText().toString().trim();
+
+        btn_form_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Nama", String.valueOf(name));
+            }
+        });
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_form, container, false);
     }
