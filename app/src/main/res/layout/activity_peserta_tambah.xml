@@ -17,6 +17,7 @@
         android:ems="10"
         android:hint="Tuliskan Nama"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -28,6 +29,7 @@
         android:ems="10"
         android:hint="Tuliskan email"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -39,6 +41,7 @@
         android:ems="10"
         android:hint="Tuliskan nomor handphone"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -50,6 +53,7 @@
         android:ems="10"
         android:hint="Tuliskan instansi"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         android:textSize="16sp"
         android:textStyle="bold" />
 

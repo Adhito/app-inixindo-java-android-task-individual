@@ -119,21 +119,23 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
     }
 
     private void getJSON() {
-        // MENGAMBIL DATA DARI ANDROID KE SERVER
-        // BANTUAN DARI CLASS ASYNCtASK
+        // Get peserta data from MySQL throught Web-API with JSON format
         class GetJSON extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;
 
-            // ctrl + o pilih OnPreExcetue
+            // Override PreExecute (Ctrl + O select the onPreExecute)
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(PesertaDetail.this,
-                        "Mengambil Data", "Harap Menunggu",
-                        false, false);
+                loading = ProgressDialog.show(
+                        PesertaDetail.this,
+                        "Mengambil data peserta ... ",
+                        "Harap Menunggu",
+                        false,
+                        false);
             }
 
-            // Saat proses ambil data terjadi
+            // Override doInBackground (Ctrl + O select the doInBackground)
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
@@ -142,16 +144,14 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
                 return result;
             }
 
-            // ctrl + o pilih OnPostExcetue
+            // Override onPostExecute (Ctrl + O select the onPostExecute)
             @Override
             protected void onPostExecute(String message) {
                 super.onPostExecute(message);
                 loading.dismiss();
                 displayDetailData(message);
-
             }
         }
-
         GetJSON getJSON = new GetJSON();
         getJSON.execute();
     }
@@ -171,6 +171,7 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
             edit_email_pst.setText(email_pst);
             edit_hp_pst.setText(hp_pst);
             edit_instansi_pst.setText(instansi_pst);
+
         } catch (Exception ex){
             ex.printStackTrace();
         }
@@ -192,69 +193,10 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void confirmDeleteDataPeserta() {
-        // Confirmation alert dialogue
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Menghapus data");
-        builder.setMessage("Apakah anda ingin menghapus peserta ini ?");
-        builder.setIcon(getResources().getDrawable(android.R.drawable.ic_delete));
-        builder.setCancelable(false);
-        builder.setNegativeButton("Cancel", null);
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                deleteDataPegawai();
-            }
-        });
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
-
-    private void deleteDataPegawai() {
-        class DeleteDataPeserta extends AsyncTask<Void, Void, String>{
-            ProgressDialog loading;
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                loading = ProgressDialog.show(PesertaDetail.this,
-                        "Menghapus data","Harap tunggu",
-                        false, false);
-            }
-
-            @Override
-            protected String doInBackground(Void... voids) {
-                HashMap<String, String> params = new HashMap<>();
-                params.put("id_pst", id_pst);
-
-                HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetResponse(Konfigurasi.URL_PESERTA_DELETE, id_pst);
-                Log.d("result",result);
-                return result;
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                loading.dismiss();
-                Toast.makeText(PesertaDetail.this,
-                        "Pesan Delete: "+s, Toast.LENGTH_SHORT).show();
-
-                // Back to homepage after update
-                // startActivity(new Intent(PesertaDetail.this,PesertaFragment.class));
-                startActivity(new Intent(PesertaDetail.this,MainActivity.class));
-
-            }
-        }
-        DeleteDataPeserta deleteDataPeserta = new DeleteDataPeserta();
-        deleteDataPeserta.execute();
-    }
-
     private void confirmUpdateDataPeserta() {
-        // Confirmation alert dialogue
+        // Show confirmation alert dialogue
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Menambahkan data");
+        builder.setTitle("Memperbarui data peserta");
         builder.setMessage("Apakah anda ingin memperbarui peserta ini ?");
         builder.setIcon(getResources().getDrawable(android.R.drawable.ic_input_add));
         builder.setCancelable(false);
@@ -271,6 +213,7 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
     }
 
     private void updateDataPeserta() {
+        // Define variables that is used
         final String nama_pst = edit_nama_pst.getText().toString().trim();
         final String email_pst = edit_email_pst.getText().toString().trim();
         final String hp_pst = edit_hp_pst.getText().toString().trim();
@@ -279,14 +222,19 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
         class UpdateDataPeserta extends AsyncTask<Void, Void, String>{
             ProgressDialog loading;
 
+            // Override onPreExecute (Ctrl + O select the onPreExecute)
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(PesertaDetail.this,
-                        "Mengubah Data", "Harap Tunggu",
-                        false, false);
+                loading = ProgressDialog.show(
+                        PesertaDetail.this,
+                        "Mengubah Data",
+                        "Harap Tunggu",
+                        false,
+                        false);
             }
 
+            // Override doInBackground (Ctrl + O select the doInBackground)
             @Override
             protected String doInBackground(Void... voids) {
                 HashMap<String, String> peserta = new HashMap<>();
@@ -298,24 +246,95 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
 
                 HttpHandler handler = new HttpHandler();
                 String result = handler.sendPostRequest(Konfigurasi.URL_PESERTA_UPDATE, peserta);
-
                 return result;
             }
 
+            // Override onPostExecute (Ctrl + O select the onPostExecute)
             @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
+            protected void onPostExecute(String message) {
+                super.onPostExecute(message);
                 loading.dismiss();
-                Toast.makeText(PesertaDetail.this,
-                        "pesan: "+s, Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                        PesertaDetail.this,
+                        "Pesan PesertaDetail: "+message,
+                        Toast.LENGTH_SHORT)
+                        .show();
 
                 // Back to homepage after update
-                // startActivity(new Intent(PesertaDetail.this,PesertaFragment.class));
                 startActivity(new Intent(PesertaDetail.this,MainActivity.class));
+                // startActivity(new Intent(PesertaDetail.this,MainActivity.class));
                 //System.exit(1);
             }
         }
         UpdateDataPeserta updateDataPeserta = new UpdateDataPeserta();
         updateDataPeserta.execute();
+    }
+
+    private void confirmDeleteDataPeserta() {
+        // Show confirmation alert dialogue
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Menghapus data");
+        builder.setMessage("Apakah anda ingin menghapus peserta ini ?");
+        builder.setIcon(getResources().getDrawable(android.R.drawable.ic_delete));
+        builder.setCancelable(false);
+        builder.setNegativeButton("Cancel", null);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                deleteDataPeserta();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void deleteDataPeserta() {
+        class DeleteDataPeserta extends AsyncTask<Void, Void, String>{
+            ProgressDialog loading;
+
+            // Override onPreExecute (Ctrl + O select the onPreExecute)
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(
+                        PesertaDetail.this,
+                        "Menghapus data",
+                        "Harap tunggu",
+                        false,
+                        false);
+            }
+
+            // Override doInBackground (Ctrl + O select the doInBackground)
+            @Override
+            protected String doInBackground(Void... voids) {
+                HashMap<String, String> params = new HashMap<>();
+                params.put("id_pst", id_pst);
+
+                HttpHandler handler = new HttpHandler();
+                String result = handler.sendGetResponse(Konfigurasi.URL_PESERTA_DELETE, id_pst);
+                Log.d("result",result);
+                return result;
+            }
+
+            // Override onPostExecute (Ctrl + O select the onPostExecute)
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(
+                        PesertaDetail.this,
+                        "Pesan Delete: "+s,
+                        Toast.LENGTH_SHORT)
+                        .show();
+
+                // Back to homepage after update
+                startActivity(new Intent(PesertaDetail.this,MainActivity.class));
+                //startActivity(new Intent(PesertaDetail.this,PesertaFragment.class));
+                //System.exit(1);
+
+            }
+        }
+        DeleteDataPeserta deleteDataPeserta = new DeleteDataPeserta();
+        deleteDataPeserta.execute();
     }
 }

@@ -57,18 +57,16 @@ public class PesertaFragment extends Fragment implements MainActivity.OnBackPres
         ActionBar customActionBar = ((MainActivity) getActivity()).getSupportActionBar();
         customActionBar.setTitle("Data Peserta");
 
-
         // penanganan List View
         pesertaBinding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
-                // membuka detail
-                Log.d("test", "clicked");
+                Log.d("PesertaFragment Log", "clicked");
                 Intent myIntent = new Intent(getActivity(), PesertaDetail.class);
                 HashMap<String, String> map = (HashMap) parent.getItemAtPosition(i);
                 String id_peserta = map.get(Konfigurasi.TAG_JSON_ID).toString();
                 myIntent.putExtra(Konfigurasi.PGW_ID, id_peserta);
-                Log.d("test", id_peserta);
+                Log.d("PesertaFragment Log", id_peserta);
                 startActivity(myIntent);
             }
         });
