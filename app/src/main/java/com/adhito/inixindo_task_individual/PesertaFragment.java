@@ -20,7 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-
+import android.widget.Toast;
 
 
 import org.json.JSONArray;
@@ -62,6 +62,7 @@ public class PesertaFragment extends Fragment implements MainActivity.OnBackPres
         ActionBar customActionBar = ((MainActivity) getActivity()).getSupportActionBar();
         customActionBar.setTitle("Data Peserta");
 
+
         // penanganan List View
         pesertaBinding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -89,7 +90,7 @@ public class PesertaFragment extends Fragment implements MainActivity.OnBackPres
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(view.getContext(), "Ambil Data Peserta", "Harap menunggu...", false, false);
+                loading = ProgressDialog.show(view.getContext(), "Mengambil Data Peserta", "Harap menunggu...", false, false);
             }
 
             @Override
@@ -105,7 +106,7 @@ public class PesertaFragment extends Fragment implements MainActivity.OnBackPres
                 loading.dismiss();
                 JSON_STRING = message;
                 Log.d("DATA_JSON: ", JSON_STRING);
-                // Toast.makeText(view.getContext(), JSON_STRING, Toast.LENGTH_LONG).show();
+                Toast.makeText(view.getContext(), JSON_STRING, Toast.LENGTH_LONG).show();
 
                 // menampilkan data json kedalam list view
                 displayAllDataPeserta();
@@ -178,7 +179,7 @@ public class PesertaFragment extends Fragment implements MainActivity.OnBackPres
     @Override
     public void onClick(View v) {
         // penanganan FAB
-//        startActivity(new Intent(view.getContext(), TambahPeserta.class));
+        startActivity(new Intent(view.getContext(), TambahPeserta.class));
     }
 
 

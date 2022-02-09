@@ -22,7 +22,7 @@
                 android:background="@color/custom_1"
                 android:minHeight="?attr/actionBarSize"
                 app:title="Simple Drawer"
-                app:titleTextColor="@color/white" />
+                app:titleTextColor="@color/custom_3" />
 
             <FrameLayout
                 android:id="@+id/frame_layout"

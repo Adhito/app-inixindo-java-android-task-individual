@@ -6,80 +6,77 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".PesertaDetail">
+    tools:context=".TambahPeserta">
 
-    <EditText
-        android:id="@+id/edit_id_pst"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:editable="false"
-        android:ems="10"
-        android:hint="ID Peserta"
-        android:textSize="24sp"
-        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edit_nama_pst"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
-        android:hint="Nama Peserta"
-        android:textSize="24sp"
+        android:hint="Tuliskan Nama"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edit_email_pst"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
-        android:hint="E-mail Peserta"
-        android:textSize="24sp"
+        android:hint="Tuliskan email"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edit_hp_pst"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
-        android:hint="HP Peserta"
-        android:textSize="24sp"
+        android:hint="Tuliskan nomor handphone"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edit_instansi_pst"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
-        android:hint="Instansi Peserta"
-        android:textSize="24sp"
+        android:hint="Tuliskan instansi"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
-        android:orientation="horizontal"
-        android:padding="12dp">
+        android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_update_peserta"
-            android:layout_width="wrap_content"
+            android:id="@+id/btn_tambah_peserta"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="6dp"
             android:layout_weight="1"
-            android:text="UPDATE PEGAWAI" />
+            android:text="Simpan Data"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btn_delete_peserta"
-            android:layout_width="wrap_content"
+            android:id="@+id/btn_lihat_peserta"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
             android:layout_weight="1"
-            android:text="DELETE PEGAWAI" />
+            android:text="Lihat Data"
+            android:textSize="14sp"
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>
