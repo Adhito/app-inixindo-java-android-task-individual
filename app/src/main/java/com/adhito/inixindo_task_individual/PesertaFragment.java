@@ -106,7 +106,7 @@ public class PesertaFragment extends Fragment implements MainActivity.OnBackPres
                 loading.dismiss();
                 JSON_STRING = message;
                 Log.d("DATA_JSON: ", JSON_STRING);
-                Toast.makeText(view.getContext(), JSON_STRING, Toast.LENGTH_LONG).show();
+                // Toast.makeText(view.getContext(), JSON_STRING, Toast.LENGTH_LONG).show();
 
                 // menampilkan data json kedalam list view
                 displayAllDataPeserta();

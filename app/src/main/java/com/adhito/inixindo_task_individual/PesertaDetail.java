@@ -65,6 +65,7 @@ package com.adhito.inixindo_task_individual;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -208,7 +209,7 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
                 params.put("id_pst", id_pst);
 
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendPostRequest(Konfigurasi.URL_PESERTA_DELETE, params);
+                String result = handler.sendGetResponse(Konfigurasi.URL_PESERTA_DELETE, id_pst);
                 Log.d("result",result);
                 return result;
             }
@@ -218,10 +219,11 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
                 super.onPostExecute(s);
                 loading.dismiss();
                 Toast.makeText(PesertaDetail.this,
-                        "pesan: "+s, Toast.LENGTH_SHORT).show();
-                //redirect ke lihat data activity
-//                startActivity(new Intent(PesertaDetail.this,PesertaFragment.class));
-                startActivity(new Intent(PesertaDetail.this,PesertaFragment.class));
+                        "Pesan Delete: "+s, Toast.LENGTH_SHORT).show();
+
+                // Back to homepage after update
+                // startActivity(new Intent(PesertaDetail.this,PesertaFragment.class));
+                startActivity(new Intent(PesertaDetail.this,MainActivity.class));
 
             }
         }
@@ -267,8 +269,11 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
                 loading.dismiss();
                 Toast.makeText(PesertaDetail.this,
                         "pesan: "+s, Toast.LENGTH_SHORT).show();
-                //redirect ke lihat data activity
-                startActivity(new Intent(PesertaDetail.this,PesertaFragment.class));
+
+                // Back to homepage after update
+                // startActivity(new Intent(PesertaDetail.this,PesertaFragment.class));
+                startActivity(new Intent(PesertaDetail.this,MainActivity.class));
+                //System.exit(1);
             }
         }
         UpdateDataPeserta updateDataPeserta = new UpdateDataPeserta();
