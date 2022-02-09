@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Inixindo_Task_Individual"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".InstrukturTambah"
+            android:exported="false" />
+        <activity
+            android:name=".InstrukturDetail"
+            android:exported="false" />
+        <activity
             android:name=".PesertaDetail"
             android:exported="false" />
         <activity

@@ -16,10 +16,10 @@ public class Konfigurasi {
 
     // Web API untuk instruktur
     public static final String URL_INSTRUKTUR_GET_ALL       = "http://192.168.5.83/api_task_individual/get_all_instruktur.php";
-    public static final String URL_INSTRUKTUR_GET_DETAIL    = "http://192.168.5.83/api_task_individual/get_detail_instruktur.php";
+    public static final String URL_INSTRUKTUR_GET_DETAIL    = "http://192.168.5.83/api_task_individual/get_detail_instruktur.php?id_ins=";
     public static final String URL_INSTRUKTUR_ADD           = "http://192.168.5.83/api_task_individual/add_instruktur.php";
     public static final String URL_INSTRUKTUR_UPDATE        = "http://192.168.5.83/api_task_individual/update_instruktur.php";
-    public static final String URL_INSTRUKTUR_DELETE        = "http://192.168.5.83/api_task_individual/delete_instruktur.php";
+    public static final String URL_INSTRUKTUR_DELETE        = "http://192.168.5.83/api_task_individual/delete_instruktur.php?id_ins=";
 
     // key adn value JSON yang muncul di browser
     public static final String KEY_PGW_ID = "id";
@@ -30,6 +30,7 @@ public class Konfigurasi {
     // flag JSON
     public static final String TAG_JSON_ARRAY = "result";
     public static final String TAG_JSON_ID = "id_pst";
+    public static final String TAG_JSON_ID_INS = "id_ins";
     public static final String TAG_JSON_NAMA ="name";
     public static final String TAG_JSON_JABATAN ="desg";
     public static final String TAG_JSON_GAJI ="salary";
