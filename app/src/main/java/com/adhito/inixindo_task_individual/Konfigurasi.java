@@ -14,8 +14,18 @@ public class Konfigurasi {
     public static final String URL_INSTRUKTUR_UPDATE        = "http://192.168.5.83/api_task_individual/update_instruktur.php";
     public static final String URL_INSTRUKTUR_DELETE        = "http://192.168.5.83/api_task_individual/delete_instruktur.php";
 
+    // Web API untuk instruktur
+    public static final String URL_PESERTA_GET_ALL       = "http://192.168.5.83/api_task_individual/get_all_peserta.php";
+    public static final String URL_PESERTA_GET_DETAIL    = "http://192.168.5.83/api_task_individual/get_detail_peserta.php";
+    public static final String URL_PESERTA_ADD           = "http://192.168.5.83/api_task_individual/add_peserta.php";
+    public static final String URL_PESERTA_UPDATE        = "http://192.168.5.83/api_task_individual/update_peserta.php";
+    public static final String URL_PESERTA_DELETE        = "http://192.168.5.83/api_task_individual/delete_peserta.php";
+
     // Flag JSON
     public static final String TAG_JSON_ARRAY = "result";
     public static final String TAG_JSON_ID = "id_pst";
+
+    // variabel alias ID Pegawai
+    public static final String PGW_ID = "emp_id"; // Memberikan Alias
 
 }

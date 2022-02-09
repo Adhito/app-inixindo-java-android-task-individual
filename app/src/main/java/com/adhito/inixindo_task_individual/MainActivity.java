@@ -26,8 +26,8 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private ActionBarDrawerToggle toggle;
+    private OnBackPressedListener onBackPressedListener;
     Toolbar toolbar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +81,13 @@ public class MainActivity extends AppCompatActivity {
                         binding.drawer.closeDrawer(GravityCompat.START);
                         callFragment(fragment);
                         break;
+
+                    case R.id.nav_peserta:
+                        fragment = new PesertaFragment();
+                        getSupportActionBar().setTitle("Peserta");
+                        binding.drawer.closeDrawer(GravityCompat.START);
+                        callFragment(fragment);
+                        break;
                 }
                 return true;
             }
@@ -103,4 +110,27 @@ public class MainActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+    @Override
+    public void onBackPressed() {
+        if (onBackPressedListener != null){
+            getSupportActionBar().setTitle("Home Fragment");
+            binding.navView.setCheckedItem(R.id.nav_home);
+            onBackPressedListener.doBack();
+            binding.drawer.closeDrawer(GravityCompat.START);
+
+        }else if(onBackPressedListener == null){
+            super.onBackPressed();
+        }
+    }
+
+    public interface OnBackPressedListener {
+        void doBack();
+    }
+
+    public void setOnBackPressedListener(OnBackPressedListener onBackPressedListener) {
+        this.onBackPressedListener = onBackPressedListener;
+    }
+
+
 }

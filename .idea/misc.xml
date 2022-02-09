@@ -5,9 +5,13 @@
       <map>
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/drawable/item_background_nav_checked.xml" value="0.263" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/drawable/item_selected.xml" value="0.137" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/activity_list_item.xml" value="0.275" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/fragment_form.xml" value="0.2609375" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/activity_peserta_detail.xml" value="0.275" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/fragment_form.xml" value="0.275" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/fragment_home.xml" value="0.275" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/fragment_peserta.xml" value="0.275" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/fragment_peserta_detail.xml" value="0.275" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/nav_header_layout.xml" value="0.275" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/menu/navigation_item.xml" value="0.275" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/menu/option_menu.xml" value="0.275" />
