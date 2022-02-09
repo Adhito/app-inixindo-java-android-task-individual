@@ -16,7 +16,7 @@
             android:name=".PesertaDetail"
             android:exported="false" />
         <activity
-            android:name=".TambahPeserta"
+            android:name=".PesertaTambah"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

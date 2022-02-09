@@ -28,7 +28,7 @@ public class PesertaTambah extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tambah_peserta);
+        setContentView(R.layout.activity_peserta_tambah);
 
         edit_id_pst = findViewById(R.id.edit_id_pst);
         edit_nama_pst = findViewById(R.id.edit_nama_pst);

@@ -26,72 +26,93 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.adhito.inixindo_task_individual.databinding.FragmentPesertaBinding;
+import com.adhito.inixindo_task_individual.databinding.FragmentInstrukturBinding;
 
+public class InstrukturFragment extends Fragment implements MainActivity.OnBackPressedListener, View.OnClickListener, AdapterView.OnItemClickListener {
 
-public class PesertaFragment extends Fragment implements MainActivity.OnBackPressedListener, View.OnClickListener, AdapterView.OnItemClickListener {
+    // TODO: Rename parameter arguments, choose names that match
+    // The fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
 
-    private FragmentPesertaBinding pesertaBinding;
+    // TODO: Rename and change types of parameters
+    private FragmentInstrukturBinding instrukturBinding;
     private View view;
     private String JSON_STRING;
     private ProgressDialog loading;
     private ListView list_view;
 
-    public PesertaFragment() {
+    public InstrukturFragment() {
         // Required empty public constructor
+    }
+
+    // TODO: Rename and change types and number of parameters
+    public static InstrukturFragment newInstance(String param1, String param2) {
+        InstrukturFragment fragment = new InstrukturFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        pesertaBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_peserta, container, false);
+        instrukturBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_instruktur, container, false);
         ((MainActivity) getActivity()).setOnBackPressedListener(this);
-        view = pesertaBinding.getRoot();
+        view = instrukturBinding.getRoot();
         initView();
         return view;
+
     }
 
     private void initView() {
-        // custom action bar
+        // ActionBar custom define
         ActionBar customActionBar = ((MainActivity) getActivity()).getSupportActionBar();
-        customActionBar.setTitle("Data Peserta");
+        customActionBar.setTitle("Data Instruktur");
 
 
-        // penanganan List View
-        pesertaBinding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        // Event-handling event view
+        instrukturBinding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
                 // membuka detail
-                Log.d("test", "clicked");
+                Log.d("InstrukturFragment Log", "InstrukturFragment Clicked");
                 Intent myIntent = new Intent(getActivity(), PesertaDetail.class);
                 HashMap<String, String> map = (HashMap) parent.getItemAtPosition(i);
-                String id_peserta = map.get(Konfigurasi.TAG_JSON_ID).toString();
-                myIntent.putExtra(Konfigurasi.PGW_ID, id_peserta);
-                Log.d("test", id_peserta);
+                String id_instruktur = map.get(Konfigurasi.TAG_JSON_ID).toString();
+                myIntent.putExtra(Konfigurasi.PGW_ID, id_instruktur);
+                Log.d("InstrukturFragment Log", id_instruktur);
                 startActivity(myIntent);
             }
         });
 
-        // penanganan FAB
-        pesertaBinding.addFab.setOnClickListener(this);
+        // Event-handling add.fab
+        instrukturBinding.addFab.setOnClickListener(this);
 
-        // ambil data dari JSON
+        // Get JSON Data
         getJsonData();
     }
+
 
     private void getJsonData() {
         class GetJsonData extends AsyncTask<Void, Void, String> {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(view.getContext(), "Mengambil Data Peserta", "Harap menunggu...", false, false);
+                loading = ProgressDialog.show(view.getContext(),
+                        "Mengambil Data Instruktur",
+                        "Harap menunggu...",
+                        false,
+                        false);
             }
 
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetResponse(Konfigurasi.URL_PESERTA_GET_ALL);
+                String result = handler.sendGetResponse(Konfigurasi.URL_INSTRUKTUR_GET_ALL);
                 return result;
             }
 
@@ -102,14 +123,13 @@ public class PesertaFragment extends Fragment implements MainActivity.OnBackPres
                 JSON_STRING = message;
                 Log.d("DATA_JSON: ", JSON_STRING);
                 // Toast.makeText(view.getContext(), JSON_STRING, Toast.LENGTH_LONG).show();
-
-                // menampilkan data json kedalam list view
                 displayAllDataPeserta();
             }
         }
         GetJsonData getJsonData = new GetJsonData();
         getJsonData.execute();
     }
+
 
     private void displayAllDataPeserta() {
         JSONObject jsonObject = null;
@@ -121,44 +141,29 @@ public class PesertaFragment extends Fragment implements MainActivity.OnBackPres
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject object = jsonArray.getJSONObject(i);
-                String id_pst = object.getString("id_pst");
-                String nama_pst = object.getString("nama_pst");
-                String email_pst = object.getString("email_pst");
-                String hp_pst = object.getString("hp_pst");
-                String instansi_pst = object.getString("instansi_pst");
+                String id_ins = object.getString("id_ins");
+                String nama_ins = object.getString("nama_ins");
+                String email_ins = object.getString("email_ins");
+                String hp_ins = object.getString("hp_ins");
 
                 HashMap<String, String> peserta = new HashMap<>();
-                peserta.put("id_pst", id_pst);
-                peserta.put("nama_pst", nama_pst);
-                peserta.put("email_pst", email_pst);
-                peserta.put("hp_pst", hp_pst);
-                peserta.put("instansi_pst", instansi_pst);
-
+                peserta.put("id_ins", id_ins);
+                peserta.put("nama_ins", nama_ins);
+                peserta.put("email_ins", email_ins);
+                peserta.put("hp_ins", hp_ins);
                 list.add(peserta);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
-        // adapter untuk meletakkan array list kedalam list view
+        // Adapter to put array list to ListView
         ListAdapter adapter = new SimpleAdapter(
                 view.getContext(), list, R.layout.activity_list_item,
-                new String[]{"id_pst", "nama_pst"},
+                new String[]{"id_ins", "nama_ins"},
                 new int[]{R.id.txt_id, R.id.txt_name}
         );
-        pesertaBinding.listView.setAdapter(adapter);
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        // Ketika salah satu list dipilih
-        // detail : id, name, Desg, Salary
-        Log.d("test", "clicked");
-        Intent myIntent = new Intent(getActivity(), PesertaDetail.class);
-        HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
-        String pgwId = map.get(Konfigurasi.TAG_JSON_ID).toString();
-        myIntent.putExtra(Konfigurasi.PGW_ID, pgwId);
-        startActivity(myIntent);
+        instrukturBinding.listView.setAdapter(adapter);
     }
 
     @Override
@@ -172,10 +177,19 @@ public class PesertaFragment extends Fragment implements MainActivity.OnBackPres
     }
 
     @Override
-    public void onClick(View v) {
-        // penanganan FAB
+    public void onClick(View view) {
+        // Event-handling add instructor
         startActivity(new Intent(view.getContext(), PesertaTambah.class));
     }
 
-
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        // Event-handling when one of the list is selected
+        Log.d("InstrukturFragment Log", "clicked");
+        Intent myIntent = new Intent(getActivity(), PesertaDetail.class);
+        HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
+        String pgwId = map.get(Konfigurasi.TAG_JSON_ID).toString();
+        myIntent.putExtra(Konfigurasi.PGW_ID, pgwId);
+        startActivity(myIntent);
+    }
 }
