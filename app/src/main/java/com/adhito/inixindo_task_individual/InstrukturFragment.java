@@ -46,15 +46,15 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
-    public static InstrukturFragment newInstance(String param1, String param2) {
-        InstrukturFragment fragment = new InstrukturFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+//    // TODO: Rename and change types and number of parameters
+//    public static InstrukturFragment newInstance(String param1, String param2) {
+//        InstrukturFragment fragment = new InstrukturFragment();
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,16 +73,14 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
         ActionBar customActionBar = ((MainActivity) getActivity()).getSupportActionBar();
         customActionBar.setTitle("Data Instruktur");
 
-
-        // Event-handling event view
+        // Event-handling detailed event view
         instrukturBinding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
-                // membuka detail
-                Log.d("InstrukturFragment Log", "InstrukturFragment Clicked");
-                Intent myIntent = new Intent(getActivity(), PesertaDetail.class);
+                Log.d("InstrukturFragment Log", "Clicked");
+                Intent myIntent = new Intent(getActivity(), InstrukturDetail.class);
                 HashMap<String, String> map = (HashMap) parent.getItemAtPosition(i);
-                String id_instruktur = map.get(Konfigurasi.TAG_JSON_ID).toString();
+                String id_instruktur = map.get(Konfigurasi.TAG_JSON_ID_INS).toString();
                 myIntent.putExtra(Konfigurasi.PGW_ID, id_instruktur);
                 Log.d("InstrukturFragment Log", id_instruktur);
                 startActivity(myIntent);
@@ -96,9 +94,10 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
         getJsonData();
     }
 
-
     private void getJsonData() {
         class GetJsonData extends AsyncTask<Void, Void, String> {
+
+            // Override PreExecute (Ctrl + O select the onPreExecute)
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -109,6 +108,7 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
                         false);
             }
 
+            // Override doInBackground (Ctrl + O select the doInBackground)
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
@@ -116,6 +116,7 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
                 return result;
             }
 
+            // Override onPostExecute (Ctrl + O select the onPostExecute)
             @Override
             protected void onPostExecute(String message) {
                 super.onPostExecute(message);
@@ -129,7 +130,6 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
         GetJsonData getJsonData = new GetJsonData();
         getJsonData.execute();
     }
-
 
     private void displayAllDataPeserta() {
         JSONObject jsonObject = null;
@@ -179,7 +179,7 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
     @Override
     public void onClick(View view) {
         // Event-handling add instructor
-        startActivity(new Intent(view.getContext(), PesertaTambah.class));
+        startActivity(new Intent(view.getContext(), InstrukturTambah.class));
     }
 
     @Override
