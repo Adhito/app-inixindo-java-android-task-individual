@@ -1,7 +1,6 @@
 package com.adhito.inixindo_task_individual;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -21,7 +20,7 @@ import com.adhito.inixindo_task_individual.databinding.ActivityMainBinding;
 
 import java.util.HashMap;
 
-public class TambahPeserta extends AppCompatActivity implements View.OnClickListener {
+public class PesertaTambah extends AppCompatActivity implements View.OnClickListener {
     private ActivityMainBinding binding;
     EditText edit_id_pst, edit_nama_pst, edit_email_pst, edit_hp_pst, edit_instansi_pst;
     Button btn_tambah_peserta, btn_lihat_peserta;
@@ -52,7 +51,7 @@ public class TambahPeserta extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.btn_lihat_peserta:
                 fragment = new PesertaFragment();
-                startActivity(new Intent(TambahPeserta.this, MainActivity.class));
+                startActivity(new Intent(PesertaTambah.this, MainActivity.class));
                 break;
         }
     }
@@ -99,7 +98,7 @@ public class TambahPeserta extends AppCompatActivity implements View.OnClickList
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(TambahPeserta.this,
+                loading = ProgressDialog.show(PesertaTambah.this,
                         "Menyimpan Data", "Harap Tunggu ...",
                         false, false);
             }
@@ -122,7 +121,7 @@ public class TambahPeserta extends AppCompatActivity implements View.OnClickList
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(TambahPeserta.this, "pesan:" + s,
+                Toast.makeText(PesertaTambah.this, "pesan:" + s,
                         Toast.LENGTH_SHORT).show();
                 // method untuk clear setelah data ditambah di form
                 clearText();
@@ -130,7 +129,7 @@ public class TambahPeserta extends AppCompatActivity implements View.OnClickList
         }
         SimpanDataPeserta simpanDataPeserta = new SimpanDataPeserta();
         simpanDataPeserta.execute();
-        startActivity(new Intent(TambahPeserta.this, MainActivity.class));
+        startActivity(new Intent(PesertaTambah.this, MainActivity.class));
     }
 
     private void callFragment(Fragment fragment) {

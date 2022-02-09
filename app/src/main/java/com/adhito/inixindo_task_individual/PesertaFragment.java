@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -20,8 +19,6 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
-
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,8 +26,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-//import id.bagusip.inixindoprojectindividu.databinding.FragmentPesertaBinding;
 import com.adhito.inixindo_task_individual.databinding.FragmentPesertaBinding;
+
 
 
 public class PesertaFragment extends Fragment implements MainActivity.OnBackPressedListener, View.OnClickListener, AdapterView.OnItemClickListener {
@@ -179,7 +176,7 @@ public class PesertaFragment extends Fragment implements MainActivity.OnBackPres
     @Override
     public void onClick(View v) {
         // penanganan FAB
-        startActivity(new Intent(view.getContext(), TambahPeserta.class));
+        startActivity(new Intent(view.getContext(), PesertaTambah.class));
     }
 
 
