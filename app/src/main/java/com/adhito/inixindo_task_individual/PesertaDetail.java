@@ -67,7 +67,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -180,11 +182,10 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void onClick(View view) {
         if (view == btn_update_peserta){
-            updateDataPeserta();
+            confirmUpdateDataPeserta();
         }
         else if(view == btn_delete_peserta){
             confirmDeleteDataPeserta();
@@ -192,6 +193,25 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
     }
 
     private void confirmDeleteDataPeserta() {
+        // Confirmation alert dialogue
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Menghapus data");
+        builder.setMessage("Apakah anda ingin menghapus peserta ini ?");
+        builder.setIcon(getResources().getDrawable(android.R.drawable.ic_delete));
+        builder.setCancelable(false);
+        builder.setNegativeButton("Cancel", null);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                deleteDataPegawai();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void deleteDataPegawai() {
         class DeleteDataPeserta extends AsyncTask<Void, Void, String>{
             ProgressDialog loading;
 
@@ -229,6 +249,25 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
         }
         DeleteDataPeserta deleteDataPeserta = new DeleteDataPeserta();
         deleteDataPeserta.execute();
+    }
+
+    private void confirmUpdateDataPeserta() {
+        // Confirmation alert dialogue
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Menambahkan data");
+        builder.setMessage("Apakah anda ingin memperbarui peserta ini ?");
+        builder.setIcon(getResources().getDrawable(android.R.drawable.ic_input_add));
+        builder.setCancelable(false);
+        builder.setNegativeButton("Cancel", null);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                updateDataPeserta();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void updateDataPeserta() {

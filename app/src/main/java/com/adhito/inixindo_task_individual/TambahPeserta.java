@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -46,14 +48,43 @@ public class TambahPeserta extends AppCompatActivity implements View.OnClickList
         Fragment fragment = null;
         switch (view.getId()) {
             case R.id.btn_tambah_peserta:
-                simpanDataPeserta();
-                startActivity(new Intent(TambahPeserta.this, MainActivity.class));
+                confirmAddDataPeserta();
                 break;
             case R.id.btn_lihat_peserta:
                 fragment = new PesertaFragment();
                 startActivity(new Intent(TambahPeserta.this, MainActivity.class));
                 break;
         }
+    }
+
+    private void confirmAddDataPeserta() {
+        // Get confirmation to add participant (Name, E-mail, Phone and Instance)
+        final String nama_pst = edit_nama_pst.getText().toString().trim();
+        final String email_pst = edit_email_pst.getText().toString().trim();
+        final String hp_pst = edit_hp_pst.getText().toString().trim();
+        final String instansi_pst = edit_instansi_pst.getText().toString().trim();
+
+        // Confirmation of alert dialogue
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Menambahkan data");
+        // builder.setMessage("Apakah anda ingin menambah peserta ini ? ");
+        builder.setMessage("Apakah anda ingin menambah peserta ini ?" +
+                "\n Nama \t\t\t: " + nama_pst +
+                "\n Email \t\t\t\t: " + email_pst +
+                "\n No Hp \t\t\t: " + hp_pst +
+                "\n Instansi \t\t: " + instansi_pst);
+        builder.setIcon(getResources().getDrawable(android.R.drawable.ic_input_add));
+        builder.setCancelable(false);
+        builder.setNegativeButton("Cancel", null);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                simpanDataPeserta();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void simpanDataPeserta() {
@@ -99,7 +130,7 @@ public class TambahPeserta extends AppCompatActivity implements View.OnClickList
         }
         SimpanDataPeserta simpanDataPeserta = new SimpanDataPeserta();
         simpanDataPeserta.execute();
-
+        startActivity(new Intent(TambahPeserta.this, MainActivity.class));
     }
 
     private void callFragment(Fragment fragment) {
