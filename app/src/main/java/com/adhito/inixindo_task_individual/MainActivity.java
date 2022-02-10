@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle toggle;
     private OnBackPressedListener onBackPressedListener;
     Toolbar toolbar;
+    String myStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +44,73 @@ public class MainActivity extends AppCompatActivity {
         // Custom Toolbar
         setSupportActionBar(binding.toolbar);
 
-        // Default fragment yang dibuka pertama kali. (menu pada saat aplikasi dibuka)
-        getSupportActionBar().setTitle("Home");
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.frame_layout, new HomeFragment())
-                .commit();
-        binding.navView.setCheckedItem(R.id.nav_home);
+//        // Default fragment yang dibuka pertama kali. (menu pada saat aplikasi dibuka)
+//        getSupportActionBar().setTitle("Home");
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.frame_layout, new HomeFragment())
+//                .commit();
+//        binding.navView.setCheckedItem(R.id.nav_home);
+
+        // Event-handling after updating/deleting/create
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        Fragment fragmentMenu = null;
+        myStr = "home";
+        if(extras != null)
+            if(extras != null){
+                myStr = extras.getString("KeyName");
+            } else {
+                myStr = "home";
+            }
+
+        switch (myStr){
+            case "home":
+                //default fragment dibuka pertama kali
+                getSupportActionBar().setTitle("Home");
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frame_layout, new HomeFragment())
+                        .commit();
+                binding.navView.setCheckedItem(R.id.nav_home);
+                break;
+            case "Peserta":
+                getSupportActionBar().setTitle("Peserta");
+                fragmentMenu = new PesertaFragment();
+                binding.drawer.closeDrawer(GravityCompat.START);
+                callFragment(fragmentMenu);
+                binding.navView.setCheckedItem(R.id.nav_materi);
+                break;
+            case "instruktur":
+                getSupportActionBar().setTitle("Instruktur");
+                fragmentMenu = new InstrukturFragment();
+                binding.drawer.closeDrawer(GravityCompat.START);
+                callFragment(fragmentMenu);
+                binding.navView.setCheckedItem(R.id.nav_instruktur);
+                break;
+            case "materi":
+                getSupportActionBar().setTitle("Materi");
+                fragmentMenu = new MateriFragment();
+                binding.drawer.closeDrawer(GravityCompat.START);
+                callFragment(fragmentMenu);
+                binding.navView.setCheckedItem(R.id.nav_materi);
+                break;
+
+//            case "kelas":
+//                getSupportActionBar().setTitle("Kelas");
+//                fragmentMenu = new KelasFragment();
+//                binding.drawer.closeDrawer(GravityCompat.START);
+//                callFragment(fragmentMenu);
+//                binding.navView.setCheckedItem(R.id.nav_materi);
+//                break;
+//            case "detail kelas":
+//                getSupportActionBar().setTitle("Detail Kelas");
+//                fragmentMenu = new DetailKelasFragment();
+//                binding.drawer.closeDrawer(GravityCompat.START);
+//                callFragment(fragmentMenu);
+//                binding.navView.setCheckedItem(R.id.nav_materi);
+//                break;
+        }
 
         // Drawer Open
         toggle = new ActionBarDrawerToggle(this, binding.drawer, binding.toolbar, R.string.open, R.string.close);

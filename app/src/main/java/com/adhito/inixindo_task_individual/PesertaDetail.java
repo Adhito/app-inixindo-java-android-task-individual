@@ -261,9 +261,12 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
                         .show();
 
                 // Back to homepage after update
-                startActivity(new Intent(PesertaDetail.this,MainActivity.class));
                 // startActivity(new Intent(PesertaDetail.this,MainActivity.class));
-                //System.exit(1);
+
+                // Back to previous page after update
+                Intent myIntent = new Intent(PesertaDetail.this, MainActivity.class);
+                myIntent.putExtra("KeyName", "Peserta");
+                startActivity(myIntent);
             }
         }
         UpdateDataPeserta updateDataPeserta = new UpdateDataPeserta();
@@ -327,10 +330,13 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
                         Toast.LENGTH_SHORT)
                         .show();
 
-                // Back to homepage after update
+                // Back to homepage after delete
                 startActivity(new Intent(PesertaDetail.this,MainActivity.class));
-                //startActivity(new Intent(PesertaDetail.this,PesertaFragment.class));
-                //System.exit(1);
+
+                // Back to previous page after delete
+                Intent myIntent = new Intent(PesertaDetail.this, MainActivity.class);
+                myIntent.putExtra("KeyName", "Peserta");
+                startActivity(myIntent);
 
             }
         }
