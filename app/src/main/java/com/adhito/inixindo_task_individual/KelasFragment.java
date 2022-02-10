@@ -77,9 +77,9 @@ public class KelasFragment extends Fragment implements MainActivity.OnBackPresse
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
                 Log.d("KelasFragment Log","Clicked");
-                Intent myIntent = new Intent(getActivity(), PesertaDetailActivity.class);
+                Intent myIntent = new Intent(getActivity(), KelasDetailActivity.class);
                 HashMap<String, String> map = (HashMap) parent.getItemAtPosition(i);
-                String id_kelas = map.get(Konfigurasi.TAG_JSON_ID).toString();
+                String id_kelas = map.get(Konfigurasi.TAG_JSON_ID_KLS).toString();
                 myIntent.putExtra(Konfigurasi.PGW_ID, id_kelas);
                 Log.d("KelasFragment Log",id_kelas);
                 startActivity(myIntent);
