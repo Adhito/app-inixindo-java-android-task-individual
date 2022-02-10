@@ -25,10 +25,10 @@
             android:name=".InstrukturDetail"
             android:exported="false" />
         <activity
-            android:name=".PesertaDetail"
+            android:name=".PesertaDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".PesertaTambah"
+            android:name=".PesertaTambahActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

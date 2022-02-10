@@ -8,11 +8,11 @@ package com.adhito.inixindo_task_individual;
 //
 ///**
 // * A simple {@link Fragment} subclass.
-// * Use the {@link PesertaDetail#newInstance} factory method to
+// * Use the {@link PesertaDetailActivity#newInstance} factory method to
 // * create an instance of this fragment.
 // *
 // */
-//public class PesertaDetail extends Fragment {
+//public class PesertaDetailActivity extends Fragment {
 //
 //    // TODO: Rename parameter arguments, choose names that match
 //    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,11 +29,11 @@ package com.adhito.inixindo_task_individual;
 //     *
 //     * @param param1 Parameter 1.
 //     * @param param2 Parameter 2.
-//     * @return A new instance of fragment PesertaDetail.
+//     * @return A new instance of fragment PesertaDetailActivity.
 //     */
 //    // TODO: Rename and change types and number of parameters
-//    public static PesertaDetail newInstance(String param1, String param2) {
-//        PesertaDetail fragment = new PesertaDetail();
+//    public static PesertaDetailActivity newInstance(String param1, String param2) {
+//        PesertaDetailActivity fragment = new PesertaDetailActivity();
 //        Bundle args = new Bundle();
 //        args.putString(ARG_PARAM1, param1);
 //        args.putString(ARG_PARAM2, param2);
@@ -41,7 +41,7 @@ package com.adhito.inixindo_task_individual;
 //        return fragment;
 //    }
 //
-//    public PesertaDetail() {
+//    public PesertaDetailActivity() {
 //        // Required empty public constructor
 //    }
 //
@@ -65,7 +65,6 @@ package com.adhito.inixindo_task_individual;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -85,7 +84,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class PesertaDetail extends AppCompatActivity implements View.OnClickListener{
+public class PesertaDetailActivity extends AppCompatActivity implements View.OnClickListener{
 
     EditText edit_id_pst, edit_nama_pst, edit_email_pst, edit_hp_pst, edit_instansi_pst;
     Button btn_update_peserta, btn_delete_peserta;
@@ -128,7 +127,7 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
             protected void onPreExecute() {
                 super.onPreExecute();
                 loading = ProgressDialog.show(
-                        PesertaDetail.this,
+                        PesertaDetailActivity.this,
                         "Mengambil data peserta ... ",
                         "Harap Menunggu",
                         false,
@@ -140,7 +139,7 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
                 String result = handler.sendGetResponse(Konfigurasi.URL_PESERTA_GET_DETAIL, id_pst);
-                Log.d("Result PesertaDetail : ",result);
+                Log.d("Result PesertaDetailActivity : ",result);
                 return result;
             }
 
@@ -227,7 +226,7 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
             protected void onPreExecute() {
                 super.onPreExecute();
                 loading = ProgressDialog.show(
-                        PesertaDetail.this,
+                        PesertaDetailActivity.this,
                         "Mengubah Data",
                         "Harap Tunggu",
                         false,
@@ -255,16 +254,16 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
                 super.onPostExecute(message);
                 loading.dismiss();
                 Toast.makeText(
-                        PesertaDetail.this,
-                        "Pesan PesertaDetail: "+message,
+                        PesertaDetailActivity.this,
+                        "Pesan PesertaDetailActivity: "+message,
                         Toast.LENGTH_SHORT)
                         .show();
 
                 // Back to homepage after update
-                // startActivity(new Intent(PesertaDetail.this,MainActivity.class));
+                // startActivity(new Intent(PesertaDetailActivity.this,MainActivity.class));
 
                 // Back to previous page after update
-                Intent myIntent = new Intent(PesertaDetail.this, MainActivity.class);
+                Intent myIntent = new Intent(PesertaDetailActivity.this, MainActivity.class);
                 myIntent.putExtra("KeyName", "Peserta");
                 startActivity(myIntent);
             }
@@ -300,7 +299,7 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
             protected void onPreExecute() {
                 super.onPreExecute();
                 loading = ProgressDialog.show(
-                        PesertaDetail.this,
+                        PesertaDetailActivity.this,
                         "Menghapus data",
                         "Harap tunggu",
                         false,
@@ -325,16 +324,16 @@ public class PesertaDetail extends AppCompatActivity implements View.OnClickList
                 super.onPostExecute(s);
                 loading.dismiss();
                 Toast.makeText(
-                        PesertaDetail.this,
+                        PesertaDetailActivity.this,
                         "Pesan Delete: "+s,
                         Toast.LENGTH_SHORT)
                         .show();
 
                 // Back to homepage after delete
-                startActivity(new Intent(PesertaDetail.this,MainActivity.class));
+                startActivity(new Intent(PesertaDetailActivity.this,MainActivity.class));
 
                 // Back to previous page after delete
-                Intent myIntent = new Intent(PesertaDetail.this, MainActivity.class);
+                Intent myIntent = new Intent(PesertaDetailActivity.this, MainActivity.class);
                 myIntent.putExtra("KeyName", "Peserta");
                 startActivity(myIntent);
 

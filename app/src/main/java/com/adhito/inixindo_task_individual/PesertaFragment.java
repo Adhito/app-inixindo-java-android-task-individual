@@ -20,13 +20,13 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.adhito.inixindo_task_individual.databinding.FragmentPesertaBinding;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import com.adhito.inixindo_task_individual.databinding.FragmentPesertaBinding;
 
 
 public class PesertaFragment extends Fragment implements MainActivity.OnBackPressedListener, View.OnClickListener, AdapterView.OnItemClickListener {
@@ -62,7 +62,7 @@ public class PesertaFragment extends Fragment implements MainActivity.OnBackPres
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
                 Log.d("PesertaFragment Log", "clicked");
-                Intent myIntent = new Intent(getActivity(), PesertaDetail.class);
+                Intent myIntent = new Intent(getActivity(), PesertaDetailActivity.class);
                 HashMap<String, String> map = (HashMap) parent.getItemAtPosition(i);
                 String id_peserta = map.get(Konfigurasi.TAG_JSON_ID).toString();
                 myIntent.putExtra(Konfigurasi.PGW_ID, id_peserta);
@@ -152,7 +152,7 @@ public class PesertaFragment extends Fragment implements MainActivity.OnBackPres
         // Ketika salah satu list dipilih
         // detail : id, name, Desg, Salary
         Log.d("test", "clicked");
-        Intent myIntent = new Intent(getActivity(), PesertaDetail.class);
+        Intent myIntent = new Intent(getActivity(), PesertaDetailActivity.class);
         HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
         String pgwId = map.get(Konfigurasi.TAG_JSON_ID).toString();
         myIntent.putExtra(Konfigurasi.PGW_ID, pgwId);
@@ -172,7 +172,7 @@ public class PesertaFragment extends Fragment implements MainActivity.OnBackPres
     @Override
     public void onClick(View v) {
         // penanganan FAB
-        startActivity(new Intent(view.getContext(), PesertaTambah.class));
+        startActivity(new Intent(view.getContext(), PesertaTambahActivity.class));
     }
 
 

@@ -20,7 +20,7 @@ import com.adhito.inixindo_task_individual.databinding.ActivityMainBinding;
 
 import java.util.HashMap;
 
-public class PesertaTambah extends AppCompatActivity implements View.OnClickListener {
+public class PesertaTambahActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityMainBinding binding;
     EditText edit_id_pst, edit_nama_pst, edit_email_pst, edit_hp_pst, edit_instansi_pst;
     Button btn_tambah_peserta, btn_lihat_peserta;
@@ -51,7 +51,7 @@ public class PesertaTambah extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.btn_lihat_peserta:
                 fragment = new PesertaFragment();
-                startActivity(new Intent(PesertaTambah.this, MainActivity.class));
+                startActivity(new Intent(PesertaTambahActivity.this, MainActivity.class));
                 break;
         }
     }
@@ -98,7 +98,7 @@ public class PesertaTambah extends AppCompatActivity implements View.OnClickList
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(PesertaTambah.this,
+                loading = ProgressDialog.show(PesertaTambahActivity.this,
                         "Menyimpan Data", "Harap Tunggu ...",
                         false, false);
             }
@@ -121,7 +121,7 @@ public class PesertaTambah extends AppCompatActivity implements View.OnClickList
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(PesertaTambah.this, "pesan:" + s,
+                Toast.makeText(PesertaTambahActivity.this, "pesan:" + s,
                         Toast.LENGTH_SHORT).show();
                 // method untuk clear setelah data ditambah di form
                 clearText();
@@ -129,7 +129,7 @@ public class PesertaTambah extends AppCompatActivity implements View.OnClickList
         }
         SimpanDataPeserta simpanDataPeserta = new SimpanDataPeserta();
         simpanDataPeserta.execute();
-        startActivity(new Intent(PesertaTambah.this, MainActivity.class));
+        startActivity(new Intent(PesertaTambahActivity.this, MainActivity.class));
     }
 
     private void callFragment(Fragment fragment) {
