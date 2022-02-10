@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class InstrukturDetail extends AppCompatActivity implements View.OnClickListener {
+public class InstrukturDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText edit_id_ins, edit_nama_ins, edit_email_ins, edit_hp_ins;
     Button btn_update_instruktur, btn_delete_instruktur;
@@ -60,7 +60,7 @@ public class InstrukturDetail extends AppCompatActivity implements View.OnClickL
             protected void onPreExecute() {
                 super.onPreExecute();
                 loading = ProgressDialog.show(
-                        InstrukturDetail.this,
+                        InstrukturDetailActivity.this,
                         "Mengambil data instruktur",
                         "Harap Menunggu ...",
                         false,
@@ -72,7 +72,7 @@ public class InstrukturDetail extends AppCompatActivity implements View.OnClickL
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
                 String result = handler.sendGetResponse(Konfigurasi.URL_INSTRUKTUR_GET_DETAIL, id_ins);
-                Log.d("Result InstrukturDetail", result);
+                Log.d("Result InstrukturDetailActivity", result);
                 return result;
             }
 
@@ -155,7 +155,7 @@ public class InstrukturDetail extends AppCompatActivity implements View.OnClickL
             protected void onPreExecute() {
                 super.onPreExecute();
                 loading = ProgressDialog.show(
-                        InstrukturDetail.this,
+                        InstrukturDetailActivity.this,
                         "Memperbarui data",
                         "Harap tunggu ...",
                         false,
@@ -182,13 +182,13 @@ public class InstrukturDetail extends AppCompatActivity implements View.OnClickL
                 super.onPostExecute(message);
                 loading.dismiss();
                 Toast.makeText(
-                        InstrukturDetail.this,
-                        "Pesan InstrukturDetail:"+message,
+                        InstrukturDetailActivity.this,
+                        "Pesan InstrukturDetailActivity:"+message,
                         Toast.LENGTH_SHORT)
                         .show();
 
                 // Back to homepage after update
-                startActivity(new Intent(InstrukturDetail.this,MainActivity.class));
+                startActivity(new Intent(InstrukturDetailActivity.this,MainActivity.class));
             }
         }
         UpdateDataInstruktur updateDataInstruktur = new UpdateDataInstruktur();
@@ -222,7 +222,7 @@ public class InstrukturDetail extends AppCompatActivity implements View.OnClickL
             protected void onPreExecute() {
                 super.onPreExecute();
                 loading = ProgressDialog.show(
-                        InstrukturDetail.this,
+                        InstrukturDetailActivity.this,
                         "Menghapus data",
                         "Harap tunggu",
                         false,
@@ -247,13 +247,13 @@ public class InstrukturDetail extends AppCompatActivity implements View.OnClickL
                 super.onPostExecute(s);
                 loading.dismiss();
                 Toast.makeText(
-                        InstrukturDetail.this,
+                        InstrukturDetailActivity.this,
                         "Pesan Delete: "+s,
                         Toast.LENGTH_SHORT)
                         .show();
 
                 // Back to homepage after update
-                startActivity(new Intent(InstrukturDetail.this,MainActivity.class));
+                startActivity(new Intent(InstrukturDetailActivity.this,MainActivity.class));
 
             }
         }

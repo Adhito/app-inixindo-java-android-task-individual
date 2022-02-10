@@ -21,7 +21,7 @@ import com.adhito.inixindo_task_individual.databinding.ActivityMainBinding;
 
 import java.util.HashMap;
 
-public class InstrukturTambah extends AppCompatActivity implements View.OnClickListener {
+public class InstrukturTambahActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityMainBinding binding;
     EditText edit_id_ins, edit_nama_ins, edit_email_ins, edit_hp_ins, edit_instansi_ins;
     Button btn_tambah_instruktur, btn_lihat_instruktur;
@@ -50,7 +50,7 @@ public class InstrukturTambah extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.btn_lihat_instruktur:
                 fragment = new PesertaFragment();
-                startActivity(new Intent(InstrukturTambah.this, MainActivity.class));
+                startActivity(new Intent(InstrukturTambahActivity.this, MainActivity.class));
                 break;
         }
     }
@@ -94,7 +94,7 @@ public class InstrukturTambah extends AppCompatActivity implements View.OnClickL
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(InstrukturTambah.this,
+                loading = ProgressDialog.show(InstrukturTambahActivity.this,
                         "Menyimpan Data",
                         "Harap Tunggu ...",
                         false,
@@ -119,14 +119,14 @@ public class InstrukturTambah extends AppCompatActivity implements View.OnClickL
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(InstrukturTambah.this, "pesan:" + s,
+                Toast.makeText(InstrukturTambahActivity.this, "pesan:" + s,
                         Toast.LENGTH_SHORT).show();
                 clearText();
             }
         }
         SimpanDataInstruktur simpanDataInstruktur = new SimpanDataInstruktur();
         simpanDataInstruktur.execute();
-        startActivity(new Intent(InstrukturTambah.this, MainActivity.class));
+        startActivity(new Intent(InstrukturTambahActivity.this, MainActivity.class));
     }
 
     private void callFragment(Fragment fragment) {

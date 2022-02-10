@@ -173,7 +173,7 @@ public class MateriDetailActivity extends AppCompatActivity implements View.OnCl
                 loading.dismiss();
                 Toast.makeText(
                         MateriDetailActivity.this,
-                        "Pesan InstrukturDetail:"+message,
+                        "Pesan InstrukturDetailActivity:"+message,
                         Toast.LENGTH_SHORT)
                         .show();
 

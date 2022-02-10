@@ -78,7 +78,7 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
                 Log.d("InstrukturFragment Log", "Clicked");
-                Intent myIntent = new Intent(getActivity(), InstrukturDetail.class);
+                Intent myIntent = new Intent(getActivity(), InstrukturDetailActivity.class);
                 HashMap<String, String> map = (HashMap) parent.getItemAtPosition(i);
                 String id_instruktur = map.get(Konfigurasi.TAG_JSON_ID_INS).toString();
                 myIntent.putExtra(Konfigurasi.PGW_ID, id_instruktur);
@@ -179,14 +179,14 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
     @Override
     public void onClick(View view) {
         // Event-handling add instructor
-        startActivity(new Intent(view.getContext(), InstrukturTambah.class));
+        startActivity(new Intent(view.getContext(), InstrukturTambahActivity.class));
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         // Event-handling when one of the list is selected
         Log.d("InstrukturFragment Log", "clicked");
-        Intent myIntent = new Intent(getActivity(), InstrukturDetail.class);
+        Intent myIntent = new Intent(getActivity(), InstrukturDetailActivity.class);
         HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
         String pgwId = map.get(Konfigurasi.TAG_JSON_ID).toString();
         myIntent.putExtra(Konfigurasi.PGW_ID, pgwId);
