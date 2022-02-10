@@ -15,7 +15,7 @@
         android:layout_margin="8dp"
         android:editable="false"
         android:ems="10"
-        android:hint="ID Peserta"
+        android:hint="ID peserta"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -25,7 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:ems="10"
-        android:hint="Nama Peserta"
+        android:hint="Nama peserta"
+        android:inputType="textPersonName"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -36,6 +37,7 @@
         android:layout_margin="8dp"
         android:ems="10"
         android:hint="E-mail Peserta"
+        android:inputType="textEmailAddress"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -46,6 +48,7 @@
         android:layout_margin="8dp"
         android:ems="10"
         android:hint="HP Peserta"
+        android:inputType="phone"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -56,6 +59,7 @@
         android:layout_margin="8dp"
         android:ems="10"
         android:hint="Instansi Peserta"
+        android:inputType="textPersonName"
         android:textSize="24sp"
         android:textStyle="bold" />
 
