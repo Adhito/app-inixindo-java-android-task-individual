@@ -129,7 +129,11 @@ public class PesertaTambahActivity extends AppCompatActivity implements View.OnC
         }
         SimpanDataPeserta simpanDataPeserta = new SimpanDataPeserta();
         simpanDataPeserta.execute();
-        startActivity(new Intent(PesertaTambahActivity.this, MainActivity.class));
+
+        // Back to previous page after update
+        Intent myIntent = new Intent(PesertaTambahActivity.this, MainActivity.class);
+        myIntent.putExtra("KeyName", "Peserta");
+        startActivity(myIntent);
     }
 
     private void callFragment(Fragment fragment) {
