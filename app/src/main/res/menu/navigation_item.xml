@@ -23,5 +23,10 @@
             android:icon="@android:drawable/ic_menu_more"
             android:title="Instruktur" />
 
+        <item
+            android:id="@+id/nav_materi"
+            android:icon="@android:drawable/ic_menu_more"
+            android:title="Materi" />
+
     </group>
 </menu>

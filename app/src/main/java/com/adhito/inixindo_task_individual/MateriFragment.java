@@ -154,7 +154,7 @@ public class MateriFragment extends Fragment implements MainActivity.OnBackPress
         // Adapter to put array list to ListView
         ListAdapter adapter = new SimpleAdapter(
                 view.getContext(), list, R.layout.activity_list_item,
-                new String[]{"id_mat", "id_mat"},
+                new String[]{"id_mat", "nama_mat"},
                 new int[]{R.id.txt_id, R.id.txt_name}
         );
         materiBinding.listView.setAdapter(adapter);
@@ -179,7 +179,7 @@ public class MateriFragment extends Fragment implements MainActivity.OnBackPress
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         // Event-handling when one of the list is selected
-        Log.d("InstrukturFragment Log", "clicked");
+        Log.d("MateriFragment Log", "clicked");
         Intent myIntent = new Intent(getActivity(), MateriDetail.class);
         HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
         String pgwId = map.get(Konfigurasi.TAG_JSON_ID).toString();
