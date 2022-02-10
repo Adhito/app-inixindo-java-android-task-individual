@@ -37,7 +37,6 @@ public class InstrukturTambah extends AppCompatActivity implements View.OnClickL
         edit_hp_ins = findViewById(R.id.edit_hp_ins);
         btn_tambah_instruktur = findViewById(R.id.btn_tambah_instruktur);
         btn_lihat_instruktur = findViewById(R.id.btn_lihat_instruktur);
-
         btn_tambah_instruktur.setOnClickListener(this);
         btn_lihat_instruktur.setOnClickListener(this);
     }

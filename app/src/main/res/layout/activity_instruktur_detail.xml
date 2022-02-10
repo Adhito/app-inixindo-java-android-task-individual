@@ -15,7 +15,7 @@
         android:layout_margin="8dp"
         android:editable="false"
         android:ems="10"
-        android:hint="ID Instruktur"
+        android:hint="ID instruktur"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -26,6 +26,7 @@
         android:layout_margin="8dp"
         android:ems="10"
         android:hint="Nama Instruktur"
+        android:inputType="textPersonName"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -36,6 +37,7 @@
         android:layout_margin="8dp"
         android:ems="10"
         android:hint="E-mail Instruktur"
+        android:inputType="textEmailAddress"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -46,6 +48,7 @@
         android:layout_margin="8dp"
         android:ems="10"
         android:hint="HP Instruktur"
+        android:inputType="phone"
         android:textSize="24sp"
         android:textStyle="bold" />
 

@@ -46,15 +46,15 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
         // Required empty public constructor
     }
 
-//    // TODO: Rename and change types and number of parameters
-//    public static InstrukturFragment newInstance(String param1, String param2) {
-//        InstrukturFragment fragment = new InstrukturFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
+    // TODO: Rename and change types and number of parameters
+    public static InstrukturFragment newInstance(String param1, String param2) {
+        InstrukturFragment fragment = new InstrukturFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
