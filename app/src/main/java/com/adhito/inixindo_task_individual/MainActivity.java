@@ -22,7 +22,6 @@ import android.widget.Toast;
 import com.adhito.inixindo_task_individual.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationView;
 
-
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private ActionBarDrawerToggle toggle;
@@ -163,6 +162,13 @@ public class MainActivity extends AppCompatActivity {
                         binding.drawer.closeDrawer(GravityCompat.START);
                         callFragment(fragment);
                         break;
+
+                    case R.id.nav_kelas:
+                        fragment = new KelasFragment();
+                        getSupportActionBar().setTitle("Kelas");
+                        binding.drawer.closeDrawer(GravityCompat.START);
+                        callFragment(fragment);
+                        break;
                 }
                 return true;
             }
@@ -206,6 +212,4 @@ public class MainActivity extends AppCompatActivity {
     public void setOnBackPressedListener(OnBackPressedListener onBackPressedListener) {
         this.onBackPressedListener = onBackPressedListener;
     }
-
-
 }

@@ -28,5 +28,10 @@
             android:icon="@android:drawable/ic_menu_more"
             android:title="Materi" />
 
+        <item
+            android:id="@+id/nav_kelas"
+            android:icon="@android:drawable/ic_menu_more"
+            android:title="Kelas" />
+
     </group>
 </menu>
