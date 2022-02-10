@@ -70,7 +70,7 @@ public class KelasFragment extends Fragment implements MainActivity.OnBackPresse
     private void initView() {
         // Create customActionBar
         ActionBar customActionBar = ((MainActivity) getActivity()).getSupportActionBar();
-        customActionBar.setTitle("Data Peserta");
+        customActionBar.setTitle("Data Kelas");
 
         // Event-handling detailed event view
         kelasBinding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -157,7 +157,7 @@ public class KelasFragment extends Fragment implements MainActivity.OnBackPresse
             ex.printStackTrace();
         }
 
-        // adapter untuk meletakkan array list kedalam list view
+        // Create adapter to put array list to ListView
         ListAdapter adapter = new SimpleAdapter(
                 view.getContext(), list, R.layout.activity_list_item_kelas,
                 new String[]{"tgl_mulai_kls", "tgl_akhir_kls"},
@@ -183,15 +183,12 @@ public class KelasFragment extends Fragment implements MainActivity.OnBackPresse
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        // Ketika salah satu list dipilih
-        // detail : id, name, Desg, Salary
+        // Event-handling when one of the list is selected
         Log.d("test","clicked");
-//        Intent myIntent = new Intent(getActivity(), KelasDetail.class);
-//        HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
-//        String pgwId = map.get(Konfigurasi.TAG_JSON_ID).toString();
-//        myIntent.putExtra(Konfigurasi.PGW_ID, pgwId);
-//        startActivity(myIntent);
+        Intent myIntent = new Intent(getActivity(), KelasDetailActivity.class);
+        HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
+        String pgwId = map.get(Konfigurasi.TAG_JSON_ID).toString();
+        myIntent.putExtra(Konfigurasi.PGW_ID, pgwId);
+        startActivity(myIntent);
     }
-
-
 }
