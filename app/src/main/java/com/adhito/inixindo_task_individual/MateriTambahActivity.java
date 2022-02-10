@@ -20,7 +20,7 @@ import com.adhito.inixindo_task_individual.databinding.ActivityMainBinding;
 
 import java.util.HashMap;
 
-public class MateriTambah extends AppCompatActivity implements View.OnClickListener {
+public class MateriTambahActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityMainBinding binding;
     EditText edit_id_materi, edit_nama_mat;
     Button btn_tambah_materi, btn_lihat_materi;
@@ -47,7 +47,7 @@ public class MateriTambah extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_lihat_materi:
                 fragment = new PesertaFragment();
-                startActivity(new Intent(MateriTambah.this, MainActivity.class));
+                startActivity(new Intent(MateriTambahActivity.this, MainActivity.class));
                 break;
         }
     }
@@ -85,7 +85,7 @@ public class MateriTambah extends AppCompatActivity implements View.OnClickListe
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(MateriTambah.this,
+                loading = ProgressDialog.show(MateriTambahActivity.this,
                         "Menyimpan Data",
                         "Harap Tunggu ...",
                         false,
@@ -108,14 +108,14 @@ public class MateriTambah extends AppCompatActivity implements View.OnClickListe
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(MateriTambah.this, "Pesan:" + s,
+                Toast.makeText(MateriTambahActivity.this, "Pesan:" + s,
                         Toast.LENGTH_SHORT).show();
                 clearText();
             }
         }
         SimpanDataMateri simpanDataMateri = new SimpanDataMateri();
         simpanDataMateri.execute();
-        startActivity(new Intent(MateriTambah.this, MainActivity.class));
+        startActivity(new Intent(MateriTambahActivity.this, MainActivity.class));
     }
 
     private void callFragment(Fragment fragment) {

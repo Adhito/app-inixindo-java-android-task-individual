@@ -77,7 +77,7 @@ public class MateriFragment extends Fragment implements MainActivity.OnBackPress
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
                 Log.d("MateriFragment Log", "Clicked");
-                Intent myIntent = new Intent(getActivity(), MateriDetail.class);
+                Intent myIntent = new Intent(getActivity(), MateriDetailActivity.class);
                 HashMap<String, String> map = (HashMap) parent.getItemAtPosition(i);
                 String id_materi = map.get(Konfigurasi.TAG_JSON_ID_MAT).toString();
                 myIntent.putExtra(Konfigurasi.PGW_ID, id_materi);
@@ -173,14 +173,14 @@ public class MateriFragment extends Fragment implements MainActivity.OnBackPress
     @Override
     public void onClick(View view) {
         // Event-handling add instructor
-        startActivity(new Intent(view.getContext(), MateriTambah.class));
+        startActivity(new Intent(view.getContext(), MateriTambahActivity.class));
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         // Event-handling when one of the list is selected
         Log.d("MateriFragment Log", "clicked");
-        Intent myIntent = new Intent(getActivity(), MateriDetail.class);
+        Intent myIntent = new Intent(getActivity(), MateriDetailActivity.class);
         HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
         String pgwId = map.get(Konfigurasi.TAG_JSON_ID).toString();
         myIntent.putExtra(Konfigurasi.PGW_ID, pgwId);

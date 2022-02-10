@@ -13,10 +13,10 @@
         android:theme="@style/Theme.Inixindo_Task_Individual"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".MateriTambah"
+            android:name=".MateriTambahActivity"
             android:exported="false" />
         <activity
-            android:name=".MateriDetail"
+            android:name=".MateriDetailActivity"
             android:exported="false" />
         <activity
             android:name=".InstrukturTambah"

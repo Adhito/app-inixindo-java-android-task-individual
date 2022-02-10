@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class MateriDetail extends AppCompatActivity implements View.OnClickListener {
+public class MateriDetailActivity extends AppCompatActivity implements View.OnClickListener {
     
     EditText edit_id_mat, edit_nama_mat;
     Button btn_update_materi, btn_delete_materi;
@@ -58,7 +58,7 @@ public class MateriDetail extends AppCompatActivity implements View.OnClickListe
             protected void onPreExecute() {
                 super.onPreExecute();
                 loading = ProgressDialog.show(
-                        MateriDetail.this,
+                        MateriDetailActivity.this,
                         "Mengambil data materi",
                         "Harap Menunggu ...",
                         false,
@@ -70,7 +70,7 @@ public class MateriDetail extends AppCompatActivity implements View.OnClickListe
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
                 String result = handler.sendGetResponse(Konfigurasi.URL_MATERI_GET_DETAIL, id_mat);
-                Log.d("Result MateriDetail", result);
+                Log.d("Result MateriDetailActivity", result);
                 return result;
             }
 
@@ -147,7 +147,7 @@ public class MateriDetail extends AppCompatActivity implements View.OnClickListe
             protected void onPreExecute() {
                 super.onPreExecute();
                 loading = ProgressDialog.show(
-                        MateriDetail.this,
+                        MateriDetailActivity.this,
                         "Memperbarui data",
                         "Harap tunggu ...",
                         false,
@@ -172,13 +172,13 @@ public class MateriDetail extends AppCompatActivity implements View.OnClickListe
                 super.onPostExecute(message);
                 loading.dismiss();
                 Toast.makeText(
-                        MateriDetail.this,
+                        MateriDetailActivity.this,
                         "Pesan InstrukturDetail:"+message,
                         Toast.LENGTH_SHORT)
                         .show();
 
                 // Back to homepage after update
-                startActivity(new Intent(MateriDetail.this,MainActivity.class));
+                startActivity(new Intent(MateriDetailActivity.this,MainActivity.class));
             }
         }
         UpdateDataMateri updateDataMateri = new UpdateDataMateri();
@@ -213,7 +213,7 @@ public class MateriDetail extends AppCompatActivity implements View.OnClickListe
             protected void onPreExecute() {
                 super.onPreExecute();
                 loading = ProgressDialog.show(
-                        MateriDetail.this,
+                        MateriDetailActivity.this,
                         "Menghapus data",
                         "Harap tunggu",
                         false,
@@ -238,13 +238,13 @@ public class MateriDetail extends AppCompatActivity implements View.OnClickListe
                 super.onPostExecute(s);
                 loading.dismiss();
                 Toast.makeText(
-                        MateriDetail.this,
+                        MateriDetailActivity.this,
                         "Pesan Delete: "+s,
                         Toast.LENGTH_SHORT)
                         .show();
 
                 // Back to homepage after update
-                startActivity(new Intent(MateriDetail.this,MainActivity.class));
+                startActivity(new Intent(MateriDetailActivity.this,MainActivity.class));
 
             }
         }
