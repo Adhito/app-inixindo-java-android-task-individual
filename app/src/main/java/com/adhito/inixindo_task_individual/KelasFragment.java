@@ -142,12 +142,14 @@ public class KelasFragment extends Fragment implements MainActivity.OnBackPresse
                 JSONObject object = jsonArray.getJSONObject(i);
                 String tgl_mulai_kls = object.getString("tgl_mulai_kls");
                 String tgl_akhir_kls = object.getString("tgl_akhir_kls");
+                String id_kls = object.getString("id_kls");
                 String id_ins = object.getString("id_ins");
                 String id_mat = object.getString("id_mat");
 
                 HashMap<String, String> kelas = new HashMap<>();
                 kelas.put("tgl_mulai_kls", tgl_mulai_kls);
                 kelas.put("tgl_akhir_kls", tgl_akhir_kls);
+                kelas.put("id_kls", id_kls);
                 kelas.put("id_ins", id_ins);
                 kelas.put("id_mat", id_mat);
 
@@ -160,12 +162,11 @@ public class KelasFragment extends Fragment implements MainActivity.OnBackPresse
         // Create adapter to put array list to ListView
         ListAdapter adapter = new SimpleAdapter(
                 view.getContext(), list, R.layout.activity_list_item_kelas,
-                new String[]{"tgl_mulai_kls", "tgl_akhir_kls"},
-                new int[]{R.id.txt_id, R.id.txt_name}
+                new String[]{"id_kls","tgl_mulai_kls", "tgl_akhir_kls"},
+                new int[]{R.id.txt_id_class, R.id.txt_start_date,R.id.txt_end_date}
         );
         kelasBinding.listView.setAdapter(adapter);
     }
-
 
     @Override
     public void onClick(View view) {
