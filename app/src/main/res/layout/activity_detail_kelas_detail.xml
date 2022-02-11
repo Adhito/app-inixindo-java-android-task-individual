@@ -50,8 +50,7 @@
             android:layout_marginRight="6dp"
             android:layout_weight="1"
             android:text="UPDATE DETAIL KELAS"
-            android:backgroundTint="@color/custom_1"
-            android:textColor="@color/custom_3"/>
+            android:backgroundTint="@color/black"/>
 
         <Button
             android:id="@+id/btn_delete_detail_kelas"
@@ -60,7 +59,6 @@
             android:layout_marginLeft="6dp"
             android:layout_weight="1"
             android:text="DELETE DETAIL KELAS"
-            android:backgroundTint="@color/custom_1"
-            android:textColor="@color/custom_3"/>
+            android:backgroundTint="@color/black"/>
     </LinearLayout>
 </LinearLayout>

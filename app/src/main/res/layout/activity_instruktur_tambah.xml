@@ -59,7 +59,8 @@
             android:layout_weight="1"
             android:text="Simpan Data"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:backgroundTint="@color/black"/>
 
         <Button
             android:id="@+id/btn_lihat_instruktur"
@@ -69,6 +70,7 @@
             android:layout_weight="1"
             android:text="Lihat Data"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:backgroundTint="@color/black"/>
     </LinearLayout>
 </LinearLayout>

@@ -73,7 +73,8 @@
             android:text="Simpan Data "
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:backgroundTint="@color/black"/>
 
         <Button
             android:id="@+id/btn_lihat_kelas"
@@ -84,7 +85,8 @@
             android:text="Lihat Data"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:backgroundTint="@color/black"/>
 
     </LinearLayout>
 </LinearLayout>
