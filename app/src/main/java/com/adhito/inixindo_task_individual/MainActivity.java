@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 callFragment(fragmentMenu);
                 binding.navView.setCheckedItem(R.id.nav_materi);
                 break;
-            case "instruktur":
+            case "Instruktur":
                 getSupportActionBar().setTitle("Instruktur");
                 fragmentMenu = new InstrukturFragment();
                 binding.drawer.closeDrawer(GravityCompat.START);

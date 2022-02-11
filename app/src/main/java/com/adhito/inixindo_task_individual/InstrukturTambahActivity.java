@@ -126,7 +126,14 @@ public class InstrukturTambahActivity extends AppCompatActivity implements View.
         }
         SimpanDataInstruktur simpanDataInstruktur = new SimpanDataInstruktur();
         simpanDataInstruktur.execute();
-        startActivity(new Intent(InstrukturTambahActivity.this, MainActivity.class));
+
+        // Back to home after add process
+        // startActivity(new Intent(InstrukturTambahActivity.this, MainActivity.class));
+
+        // Back to instruktur fragment after add process
+        Intent myIntent = new Intent(InstrukturTambahActivity.this, MainActivity.class);
+        myIntent.putExtra("KeyName", "Instruktur");
+        startActivity(myIntent);
     }
 
     private void callFragment(Fragment fragment) {

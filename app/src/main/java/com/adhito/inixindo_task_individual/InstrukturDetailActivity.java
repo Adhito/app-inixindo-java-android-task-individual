@@ -72,7 +72,7 @@ public class InstrukturDetailActivity extends AppCompatActivity implements View.
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
                 String result = handler.sendGetResponse(Konfigurasi.URL_INSTRUKTUR_GET_DETAIL, id_ins);
-                Log.d("Result InstrukturDetailActivity", result);
+                Log.d("Log", result);
                 return result;
             }
 
@@ -188,7 +188,12 @@ public class InstrukturDetailActivity extends AppCompatActivity implements View.
                         .show();
 
                 // Back to homepage after update
-                startActivity(new Intent(InstrukturDetailActivity.this,MainActivity.class));
+                // startActivity(new Intent(InstrukturDetailActivity.this,MainActivity.class));
+
+                // Back to instruktur fragment after update
+                Intent myIntent = new Intent(InstrukturDetailActivity.this, MainActivity.class);
+                myIntent.putExtra("KeyName", "Instruktur");
+                startActivity(myIntent);
             }
         }
         UpdateDataInstruktur updateDataInstruktur = new UpdateDataInstruktur();
@@ -253,7 +258,12 @@ public class InstrukturDetailActivity extends AppCompatActivity implements View.
                         .show();
 
                 // Back to homepage after update
-                startActivity(new Intent(InstrukturDetailActivity.this,MainActivity.class));
+                //startActivity(new Intent(InstrukturDetailActivity.this,MainActivity.class));
+
+                // Back to instruktur fragment after update
+                Intent myIntent = new Intent(InstrukturDetailActivity.this, MainActivity.class);
+                myIntent.putExtra("KeyName", "Instruktur");
+                startActivity(myIntent);
 
             }
         }
