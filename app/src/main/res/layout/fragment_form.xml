@@ -49,13 +49,7 @@
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp" />
 
-            <EditText
-                android:id="@+id/form_edit_kelas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Masukan Kelas Yang Diikuti"
-                android:inputType="text"
-                android:minHeight="48dp" />
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/form_edit_gender"
@@ -77,10 +71,11 @@
                         android:textSize="18sp" />
 
                     <Spinner
-                        android:id="@+id/spinner2"
+                        android:id="@+id/form_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:entries="@array/home_gender"/>
 
                 </LinearLayout>
 
@@ -100,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:minHeight="48dp"
-                    android:text="Sudah PCR/Antigen dalam 14 hari terakhir"
+                    android:text="Sudah vaksinasi minimal Dosis 1?"
                     android:textSize="18sp" />
 
                 <LinearLayout
@@ -109,14 +104,14 @@
 
 
                     <RadioGroup
-                        android:id="@+id/radio_group"
+                        android:id="@+id/radiogroup_vaksinasi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_above="@+id/view_below"
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/radio1_initial"
+                            android:id="@+id/radio_vaksinasi_yes"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -124,7 +119,7 @@
                             android:text="Yes" />
 
                         <RadioButton
-                            android:id="@+id/radio2_initial"
+                            android:id="@+id/radio_vaksinasi_no"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -156,14 +151,14 @@
 
 
                     <RadioGroup
-                        android:id="@+id/radio_group_result"
+                        android:id="@+id/radiogroup_statusantigenpcr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_above="@+id/view_below"
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/radio1_result"
+                            android:id="@+id/radiogroup_statusantigenpcr_positif"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -171,7 +166,7 @@
                             android:text="Positif" />
 
                         <RadioButton
-                            android:id="@+id/radio2_result"
+                            android:id="@+id/radiogroup_statusantigenpcr_negatif"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
