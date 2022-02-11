@@ -70,7 +70,7 @@ public class MateriDetailActivity extends AppCompatActivity implements View.OnCl
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
                 String result = handler.sendGetResponse(Konfigurasi.URL_MATERI_GET_DETAIL, id_mat);
-                Log.d("Result MateriDetailActivity", result);
+                Log.d("Result", result);
                 return result;
             }
 
@@ -178,7 +178,13 @@ public class MateriDetailActivity extends AppCompatActivity implements View.OnCl
                         .show();
 
                 // Back to homepage after update
-                startActivity(new Intent(MateriDetailActivity.this,MainActivity.class));
+                // startActivity(new Intent(MateriDetailActivity.this,MainActivity.class));
+
+                // Back to instruktur fragment after update
+                Intent myIntent = new Intent(MateriDetailActivity.this, MainActivity.class);
+                myIntent.putExtra("KeyName", "Materi");
+                startActivity(myIntent);
+
             }
         }
         UpdateDataMateri updateDataMateri = new UpdateDataMateri();
@@ -244,7 +250,12 @@ public class MateriDetailActivity extends AppCompatActivity implements View.OnCl
                         .show();
 
                 // Back to homepage after update
-                startActivity(new Intent(MateriDetailActivity.this,MainActivity.class));
+                // startActivity(new Intent(MateriDetailActivity.this,MainActivity.class));
+
+                // Back to instruktur fragment after update
+                Intent myIntent = new Intent(MateriDetailActivity.this, MainActivity.class);
+                myIntent.putExtra("KeyName", "Materi");
+                startActivity(myIntent);
 
             }
         }

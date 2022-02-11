@@ -59,7 +59,6 @@ public class MateriTambahActivity extends AppCompatActivity implements View.OnCl
         // Show confirmation of alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Menambahkan data materi");
-        // builder.setMessage("Apakah anda ingin menambah peserta ini ? ");
         builder.setMessage("Apakah anda ingin menambah materi ini ?" +
                 "\n Nama \t\t\t: " + nama_mat);
         builder.setIcon(getResources().getDrawable(android.R.drawable.ic_input_add));
@@ -115,7 +114,14 @@ public class MateriTambahActivity extends AppCompatActivity implements View.OnCl
         }
         SimpanDataMateri simpanDataMateri = new SimpanDataMateri();
         simpanDataMateri.execute();
-        startActivity(new Intent(MateriTambahActivity.this, MainActivity.class));
+
+        // Back to homepage after add
+        // startActivity(new Intent(MateriTambahActivity.this,MainActivity.class));
+
+        // Back to instruktur fragment after add
+        Intent myIntent = new Intent(MateriTambahActivity.this, MainActivity.class);
+        myIntent.putExtra("KeyName", "Materi");
+        startActivity(myIntent);
     }
 
     private void callFragment(Fragment fragment) {
