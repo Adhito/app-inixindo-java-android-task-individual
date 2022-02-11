@@ -43,7 +43,6 @@ public class KelasTambahActivity extends AppCompatActivity implements View.OnCli
         switch (view.getId()) {
             case R.id.btn_tambah_kelas:
                 simpanDataKelas();
-                startActivity(new Intent(KelasTambahActivity.this, MainActivity.class));
                 break;
             case R.id.btn_lihat_kelas:
                 startActivity(new Intent(KelasTambahActivity.this, MainActivity.class));
@@ -70,14 +69,15 @@ public class KelasTambahActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             protected String doInBackground(Void... voids) {
-                // params digunakan untuk meyimpan ke HttpHandler
+                // Create hashmap to store values which will be sent to HttpHandler
                 HashMap<String, String> params = new HashMap<>();
                 params.put("tgl_mulai_kls", tgl_mulai_kls);
                 params.put("tgl_akhir_kls", tgl_akhir_kls);
                 params.put("id_ins", id_ins);
                 params.put("id_mat", id_mat);
                 HttpHandler handler = new HttpHandler();
-                // HttpHandler untuk kirim data pakai sendPostRequest
+
+                // Create HttpHandler to send data with sendPostRequest
                 String result = handler.sendPostRequest(Konfigurasi.URL_KELAS_ADD, params);
                 return result;
             }
@@ -86,15 +86,24 @@ public class KelasTambahActivity extends AppCompatActivity implements View.OnCli
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(KelasTambahActivity.this, "pesan:" + s,
-                        Toast.LENGTH_SHORT).show();
-                // method untuk clear setelah data ditambah di form
+                Toast.makeText(
+                        KelasTambahActivity.this,
+                        "pesan:" + s,
+                        Toast.LENGTH_SHORT)
+                        .show();
                 clearText();
             }
         }
         SimpanDataKelas simpanDataKelas = new SimpanDataKelas();
         simpanDataKelas.execute();
 
+        // Back to homepage after update
+        // startActivity(new Intent(KelasDetailActivity.this,MainActivity.class));
+
+        // Back to instruktur fragment after update
+        Intent myIntent = new Intent(KelasTambahActivity.this, MainActivity.class);
+        myIntent.putExtra("KeyName", "Kelas");
+        startActivity(myIntent);
     }
 
     private void clearText() {

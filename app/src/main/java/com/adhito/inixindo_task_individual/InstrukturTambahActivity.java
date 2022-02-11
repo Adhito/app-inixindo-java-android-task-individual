@@ -119,8 +119,11 @@ public class InstrukturTambahActivity extends AppCompatActivity implements View.
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(InstrukturTambahActivity.this, "pesan:" + s,
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                        InstrukturTambahActivity.this,
+                        "pesan:" + s,
+                        Toast.LENGTH_SHORT)
+                        .show();
                 clearText();
             }
         }

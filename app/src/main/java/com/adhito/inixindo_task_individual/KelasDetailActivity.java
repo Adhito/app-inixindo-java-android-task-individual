@@ -21,16 +21,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-//public class KelasDetailActivity extends AppCompatActivity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_kelas_detail);
-//    }
-//}
-
-
 public class KelasDetailActivity extends AppCompatActivity implements View.OnClickListener{
 
     // TODO: Rename parameter arguments, choose names that match
@@ -68,12 +58,11 @@ public class KelasDetailActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void getJSON() {
-        // MENGAMBIL DATA DARI ANDROID KE SERVER
-        // BANTUAN DARI CLASS ASYNCtASK
+        // Get peserta data from MySQL throught Web-API with JSON format
         class GetJSON extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;
 
-            // ctrl + o pilih OnPreExcetue
+            // Override PreExecute (Ctrl + O select the onPreExecute)
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -82,7 +71,7 @@ public class KelasDetailActivity extends AppCompatActivity implements View.OnCli
                         false, false);
             }
 
-            // Saat proses ambil data terjadi
+            // Override doInBackground (Ctrl + O select the doInBackground)
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
@@ -91,13 +80,12 @@ public class KelasDetailActivity extends AppCompatActivity implements View.OnCli
                 return result;
             }
 
-            // ctrl + o pilih OnPostExcetue
+            // Override onPostExecute (Ctrl + O select the onPostExecute)
             @Override
             protected void onPostExecute(String message) {
                 super.onPostExecute(message);
                 loading.dismiss();
                 displayDetailData(message);
-
             }
         }
 
@@ -136,17 +124,97 @@ public class KelasDetailActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
         if (view == btn_update_kelas){
-            updateDataKelas();
+            confirmUpdateKelas();
         }
         else if(view == btn_delete_kelas){
             confirmDeleteDataKelas();
         }
     }
 
+    private void confirmUpdateKelas() {
+        // Show confirmation alert dialogue
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Memperbarui data instruktur");
+        builder.setMessage("Apakah anda ingin memperbarui kelas ini ?");
+        builder.setIcon(getResources().getDrawable(android.R.drawable.ic_input_add));
+        builder.setCancelable(false);
+        builder.setNegativeButton("Cancel", null);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                updateDataKelas();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void updateDataKelas() {
+        final String tgl_mulai_kls = edit_tgl_mulai_kls.getText().toString().trim();
+        final String tgl_akhir_kls = edit_tgl_akhir_kls.getText().toString().trim();
+        final String id_ins = edit_id_ins.getText().toString().trim();
+        final String id_mat = edit_id_mat.getText().toString().trim();
+
+        class UpdateDataKelas extends AsyncTask<Void, Void, String>{
+            ProgressDialog loading;
+
+            // Override onPreExecute (Ctrl + O select the onPreExecute)
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(
+                        KelasDetailActivity.this,
+                        "Mengubah Data",
+                        "Harap Tunggu",
+                        false,
+                        false);
+            }
+
+            // Override doInBackground (Ctrl + O select the doInBackground)
+            @Override
+            protected String doInBackground(Void... voids) {
+                HashMap<String, String> kelas = new HashMap<>();
+                kelas.put("tgl_mulai_kls", tgl_mulai_kls);
+                kelas.put("tgl_akhir_kls", tgl_akhir_kls);
+                kelas.put("id_kls", id_kls);
+                kelas.put("id_ins", id_ins);
+                kelas.put("id_mat", id_mat);
+
+                HttpHandler handler = new HttpHandler();
+                String result = handler.sendPostRequest(Konfigurasi.URL_KELAS_UPDATE, kelas);
+
+                return result;
+            }
+
+            // Override onPostExecute (Ctrl + O select the onPostExecute)
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(
+                        KelasDetailActivity.this,
+                        "pesan: "+s,
+                        Toast.LENGTH_SHORT).show();
+
+                // Back to homepage after update
+                // startActivity(new Intent(KelasDetailActivity.this,MainActivity.class));
+
+                // Back to instruktur fragment after update
+                Intent myIntent = new Intent(KelasDetailActivity.this, MainActivity.class);
+                myIntent.putExtra("KeyName", "Kelas");
+                startActivity(myIntent);
+            }
+        }
+        UpdateDataKelas updateDataKelas = new UpdateDataKelas();
+        updateDataKelas.execute();
+
+    }
+
     private void confirmDeleteDataKelas() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Menghapus Data");
-        builder.setMessage("Apakah anda yaking menhapus data ini?");
+        builder.setMessage("Apakah anda ingin menghapus kelas ini?");
         builder.setIcon(getResources().getDrawable(android.R.drawable.ic_delete));
         builder.setCancelable(false);
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -164,6 +232,7 @@ public class KelasDetailActivity extends AppCompatActivity implements View.OnCli
         class DeleteDataKelas extends AsyncTask<Void, Void, String>{
             ProgressDialog loading;
 
+            // Override onPreExecute (Ctrl + O select the onPreExecute)
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -175,6 +244,7 @@ public class KelasDetailActivity extends AppCompatActivity implements View.OnCli
                         false);
             }
 
+            // Override doInBackground (Ctrl + O select the doInBackground)
             @Override
             protected String doInBackground(Void... voids) {
 
@@ -183,68 +253,28 @@ public class KelasDetailActivity extends AppCompatActivity implements View.OnCli
                 return result;
             }
 
+            // Override onPostExecute (Ctrl + O select the onPostExecute)
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(KelasDetailActivity.this,
-                        "pesan: "+s, Toast.LENGTH_LONG).show();
+                Toast.makeText(
+                        KelasDetailActivity.this,
+                        "pesan: "+s,
+                        Toast.LENGTH_LONG)
+                        .show();
 
-                startActivity(new Intent(KelasDetailActivity.this,MainActivity.class));
+                // Back to homepage after update
+                //startActivity(new Intent(KelasDetailActivity.this,MainActivity.class));
+
+                // Back to instruktur fragment after update
+                Intent myIntent = new Intent(KelasDetailActivity.this, MainActivity.class);
+                myIntent.putExtra("KeyName", "Kelas");
+                startActivity(myIntent);
 
             }
         }
         DeleteDataKelas deleteDataKelas = new DeleteDataKelas();
         deleteDataKelas.execute();
-    }
-
-    private void updateDataKelas() {
-        final String tgl_mulai_kls = edit_tgl_mulai_kls.getText().toString().trim();
-        final String tgl_akhir_kls = edit_tgl_akhir_kls.getText().toString().trim();
-        final String id_ins = edit_id_ins.getText().toString().trim();
-        final String id_mat = edit_id_mat.getText().toString().trim();
-
-        class UpdateDataKelas extends AsyncTask<Void, Void, String>{
-            ProgressDialog loading;
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                loading = ProgressDialog.show(
-                        KelasDetailActivity.this,
-                        "Mengubah Data",
-                        "Harap Tunggu",
-                        false,
-                        false);
-            }
-
-            @Override
-            protected String doInBackground(Void... voids) {
-                HashMap<String, String> kelas = new HashMap<>();
-                kelas.put("tgl_mulai_kls", tgl_mulai_kls);
-                kelas.put("tgl_akhir_kls", tgl_akhir_kls);
-                kelas.put("id_kls", id_kls);
-                kelas.put("id_ins", id_ins);
-                kelas.put("id_mat", id_mat);
-
-                HttpHandler handler = new HttpHandler();
-                String result = handler.sendPostRequest(Konfigurasi.URL_KELAS_UPDATE, kelas);
-
-                return result;
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-                loading.dismiss();
-                Toast.makeText(KelasDetailActivity.this,
-                        "pesan: "+s, Toast.LENGTH_SHORT).show();
-                //redirect ke lihat data activity
-                startActivity(new Intent(KelasDetailActivity.this,MainActivity.class));
-            }
-        }
-        UpdateDataKelas updateDataKelas = new UpdateDataKelas();
-        updateDataKelas.execute();
-
     }
 }

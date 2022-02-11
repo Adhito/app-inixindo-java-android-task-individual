@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                         .commit();
                 binding.navView.setCheckedItem(R.id.nav_home);
                 break;
+
             case "Peserta":
                 getSupportActionBar().setTitle("Peserta");
                 fragmentMenu = new PesertaFragment();
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 callFragment(fragmentMenu);
                 binding.navView.setCheckedItem(R.id.nav_materi);
                 break;
+
             case "Instruktur":
                 getSupportActionBar().setTitle("Instruktur");
                 fragmentMenu = new InstrukturFragment();
@@ -87,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 callFragment(fragmentMenu);
                 binding.navView.setCheckedItem(R.id.nav_instruktur);
                 break;
+
             case "Materi":
                 getSupportActionBar().setTitle("Materi");
                 fragmentMenu = new MateriFragment();
@@ -95,13 +98,14 @@ public class MainActivity extends AppCompatActivity {
                 binding.navView.setCheckedItem(R.id.nav_materi);
                 break;
 
-//            case "kelas":
-//                getSupportActionBar().setTitle("Kelas");
-//                fragmentMenu = new KelasFragment();
-//                binding.drawer.closeDrawer(GravityCompat.START);
-//                callFragment(fragmentMenu);
-//                binding.navView.setCheckedItem(R.id.nav_materi);
-//                break;
+            case "Kelas":
+                getSupportActionBar().setTitle("Kelas");
+                fragmentMenu = new KelasFragment();
+                binding.drawer.closeDrawer(GravityCompat.START);
+                callFragment(fragmentMenu);
+                binding.navView.setCheckedItem(R.id.nav_materi);
+                break;
+
 //            case "detail kelas":
 //                getSupportActionBar().setTitle("Detail Kelas");
 //                fragmentMenu = new DetailKelasFragment();
