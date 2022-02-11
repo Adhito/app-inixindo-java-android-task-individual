@@ -13,6 +13,15 @@
         android:theme="@style/Theme.Inixindo_Task_Individual"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".DetailKelasTambahActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailKelasDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".KelasTambahActivity"
+            android:exported="false" />
+        <activity
             android:name=".KelasDetailActivity"
             android:exported="false" />
         <activity

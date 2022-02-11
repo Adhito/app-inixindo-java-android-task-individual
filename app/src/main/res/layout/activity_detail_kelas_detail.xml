@@ -6,63 +6,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".KelasDetailActivity">
+    tools:context=".DetailKelasDetailActivity">
 
     <EditText
-        android:id="@+id/edit_id_kls"
+        android:id="@+id/edit_id_detail_kls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:editable="false"
         android:ems="10"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:hint="ID"
-        android:inputType="textPersonName"/>
+        android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edit_tgl_mulai_kls"
+        android:id="@+id/edit_id_kls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:ems="10"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:hint="Tanggal mulai YYYY-MM-DD"
-        android:inputType="date"/>
+        android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edit_tgl_akhir_kls"
+        android:id="@+id/edit_id_pst"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:ems="10"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:hint="Tanggal mulai YYYY-MM-DD"
-        android:inputType="date"/>
-
-    <EditText
-        android:id="@+id/edit_id_ins"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:ems="10"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:hint="ID instruktur"
-        android:inputType="textPersonName"/>
-
-    <EditText
-        android:id="@+id/edit_id_mat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:ems="10"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:hint="ID materi"
-        android:inputType="textPersonName"/>
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -72,19 +44,23 @@
         android:padding="12dp">
 
         <Button
-            android:id="@+id/btn_update_kelas"
+            android:id="@+id/btn_update_detail_kelas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="6dp"
             android:layout_weight="1"
-            android:text="UPDATE KELAS" />
+            android:text="UPDATE DETAIL KELAS"
+            android:backgroundTint="@color/custom_1"
+            android:textColor="@color/custom_3"/>
 
         <Button
-            android:id="@+id/btn_delete_kelas"
+            android:id="@+id/btn_delete_detail_kelas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
             android:layout_weight="1"
-            android:text="DELETE KELAS" />
+            android:text="DELETE DETAIL KELAS"
+            android:backgroundTint="@color/custom_1"
+            android:textColor="@color/custom_3"/>
     </LinearLayout>
 </LinearLayout>

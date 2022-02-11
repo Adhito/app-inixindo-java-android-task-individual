@@ -20,35 +20,35 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.adhito.inixindo_task_individual.databinding.FragmentDetailKelasBinding;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.adhito.inixindo_task_individual.databinding.FragmentInstrukturBinding;
 
-public class InstrukturFragment extends Fragment implements MainActivity.OnBackPressedListener, View.OnClickListener, AdapterView.OnItemClickListener {
-
+public class DetailKelasFragment extends Fragment implements MainActivity.OnBackPressedListener, View.OnClickListener, AdapterView.OnItemClickListener {
     // TODO: Rename parameter arguments, choose names that match
-    // The fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private FragmentInstrukturBinding instrukturBinding;
+    private FragmentDetailKelasBinding detailKelasBinding;
     private View view;
     private String JSON_STRING;
     private ProgressDialog loading;
     private ListView list_view;
 
-    public InstrukturFragment() {
+    public DetailKelasFragment() {
         // Required empty public constructor
     }
 
     // TODO: Rename and change types and number of parameters
-    public static InstrukturFragment newInstance(String param1, String param2) {
-        InstrukturFragment fragment = new InstrukturFragment();
+    public static DetailKelasFragment newInstance(String param1, String param2) {
+        DetailKelasFragment fragment = new DetailKelasFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,35 +60,35 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        instrukturBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_instruktur, container, false);
+        detailKelasBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail_kelas, container, false);
         ((MainActivity) getActivity()).setOnBackPressedListener(this);
-        view = instrukturBinding.getRoot();
+        view = detailKelasBinding.getRoot();
         initView();
         return view;
-
     }
+
 
     private void initView() {
         // Create customActionBar
         ActionBar customActionBar = ((MainActivity) getActivity()).getSupportActionBar();
-        customActionBar.setTitle("Data Instruktur");
+        customActionBar.setTitle("Data Detail Kelas");
 
-        // Event-handling detailed event view
-        instrukturBinding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
-                Log.d("InstrukturFragment Log", "Clicked");
-                Intent myIntent = new Intent(getActivity(), InstrukturDetailActivity.class);
-                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(i);
-                String id_instruktur = map.get(Konfigurasi.TAG_JSON_ID_INS).toString();
-                myIntent.putExtra(Konfigurasi.PGW_ID, id_instruktur);
-                Log.d("InstrukturFragment Log", id_instruktur);
-                startActivity(myIntent);
-            }
-        });
-
-        // Event-handling add.fab
-        instrukturBinding.addFab.setOnClickListener(this);
+//        // Event-handling detailed event view
+//        detailKelasBinding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+//                Log.d("test","clicked");
+//                Intent myIntent = new Intent(getActivity(), DetailKelasDetailActivity.class);
+//                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(i);
+//                String id_kls = map.get("id_kls").toString();
+//                myIntent.putExtra(Konfigurasi.PGW_ID, id_kls);
+//                Log.d("test",id_kls);
+//                startActivity(myIntent);
+//            }
+//        });
+//
+//        // Event-handling add.fab
+//        detailKelasBinding.addFab.setOnClickListener(this);
 
         // Get JSON Data
         getJsonData();
@@ -100,18 +100,14 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(view.getContext(),
-                        "Mengambil Data Instruktur",
-                        "Harap menunggu...",
-                        false,
-                        false);
+                loading = ProgressDialog.show(view.getContext(), "Mengambil data detail kelas", "Harap menunggu...", false, false);
             }
 
             // Override doInBackground (Ctrl + O select the doInBackground)
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetResponse(Konfigurasi.URL_INSTRUKTUR_GET_ALL);
+                String result = handler.sendGetResponse(Konfigurasi.URL_KELAS_DETAIL_GET_ALL);
                 return result;
             }
 
@@ -123,14 +119,15 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
                 JSON_STRING = message;
                 Log.d("DATA_JSON: ", JSON_STRING);
                 // Toast.makeText(view.getContext(), JSON_STRING, Toast.LENGTH_LONG).show();
-                displayAllDataPeserta();
+                displayAllDataDetailKelas();
+
             }
         }
         GetJsonData getJsonData = new GetJsonData();
         getJsonData.execute();
     }
 
-    private void displayAllDataPeserta() {
+    private void displayAllDataDetailKelas() {
         JSONObject jsonObject = null;
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 
@@ -140,17 +137,14 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject object = jsonArray.getJSONObject(i);
-                String id_ins = object.getString("id_ins");
-                String nama_ins = object.getString("nama_ins");
-                String email_ins = object.getString("email_ins");
-                String hp_ins = object.getString("hp_ins");
+                String id_kls = object.getString("id_kls");
+                String jum_pst = object.getString("jum_pst");
 
-                HashMap<String, String> peserta = new HashMap<>();
-                peserta.put("id_ins", id_ins);
-                peserta.put("nama_ins", nama_ins);
-                peserta.put("email_ins", email_ins);
-                peserta.put("hp_ins", hp_ins);
-                list.add(peserta);
+                HashMap<String, String> detailKelas = new HashMap<>();
+                detailKelas.put("id_kls",id_kls);
+                detailKelas.put("jum_pst",jum_pst);
+
+                list.add(detailKelas);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -158,15 +152,22 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
 
         // Adapter to put array list to ListView
         ListAdapter adapter = new SimpleAdapter(
-                view.getContext(), list, R.layout.activity_list_item,
-                new String[]{"id_ins", "nama_ins"},
-                new int[]{R.id.txt_id, R.id.txt_name}
+                view.getContext(), list, R.layout.activity_list_item_detail_kelas,
+                new String[]{"id_kls","jum_pst"},
+                new int[]{R.id.txt_id_kls, R.id.jum_pst}
         );
-        instrukturBinding.listView.setAdapter(adapter);
+        detailKelasBinding.listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onClick(View v) {
+        // Event-handling add detail class
+        startActivity(new Intent(view.getContext(), DetailKelasTambahActivity.class));
     }
 
     @Override
     public void doBack() {
+        // Event-handling back button
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
@@ -176,16 +177,10 @@ public class InstrukturFragment extends Fragment implements MainActivity.OnBackP
     }
 
     @Override
-    public void onClick(View view) {
-        // Event-handling add instructor
-        startActivity(new Intent(view.getContext(), InstrukturTambahActivity.class));
-    }
-
-    @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         // Event-handling when one of the list is selected
-        Log.d("InstrukturFragment Log", "clicked");
-        Intent myIntent = new Intent(getActivity(), InstrukturDetailActivity.class);
+        Log.d("test","clicked");
+        Intent myIntent = new Intent(getActivity(), DetailKelasFragment.class);
         HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
         String pgwId = map.get(Konfigurasi.TAG_JSON_ID).toString();
         myIntent.putExtra(Konfigurasi.PGW_ID, pgwId);

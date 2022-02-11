@@ -39,7 +39,7 @@ public class KelasDetailActivity extends AppCompatActivity implements View.OnCli
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    EditText edit_id_kls, edit_tgl_mulai_kls, edit_tgl_akhir_kls, edit_nama_ins, edit_nama_mat;
+    EditText edit_id_kls, edit_id_ins, edit_id_mat, edit_tgl_mulai_kls, edit_tgl_akhir_kls;
     Button btn_update_kelas, btn_delete_kelas;
     String id_kls;
 
@@ -51,8 +51,8 @@ public class KelasDetailActivity extends AppCompatActivity implements View.OnCli
         edit_tgl_mulai_kls = findViewById(R.id.edit_tgl_mulai_kls);
         edit_tgl_akhir_kls = findViewById(R.id.edit_tgl_akhir_kls);
         edit_id_kls = findViewById(R.id.edit_id_kls);
-        edit_nama_ins = findViewById(R.id.edit_nama_ins);
-        edit_nama_mat = findViewById(R.id.edit_nama_mat);
+        edit_id_ins = findViewById(R.id.edit_id_ins);
+        edit_id_mat = findViewById(R.id.edit_id_mat);
         btn_update_kelas = findViewById(R.id.btn_update_kelas);
         btn_delete_kelas = findViewById(R.id.btn_delete_kelas);
 
@@ -114,14 +114,14 @@ public class KelasDetailActivity extends AppCompatActivity implements View.OnCli
             String tgl_mulai_kls = object.getString("tgl_mulai_kls");
             String tgl_akhir_kls = object.getString("tgl_akhir_kls");
             String id_kls =  object.getString("id_kls");
-            String nama_ins =  object.getString("nama_ins");
-            String nama_mat = object.getString("nama_mat");
+            String id_ins =  object.getString("id_ins");
+            String id_mat = object.getString("id_mat");
 
             edit_tgl_mulai_kls.setText(tgl_mulai_kls);
             edit_tgl_akhir_kls.setText(tgl_akhir_kls);
             edit_id_kls.setText(id_kls);
-            edit_nama_ins.setText(nama_ins);
-            edit_nama_mat.setText(nama_mat);
+            edit_id_ins.setText(id_ins);
+            edit_id_mat.setText(id_mat);
         } catch (Exception ex){
             ex.printStackTrace();
         }
@@ -201,8 +201,8 @@ public class KelasDetailActivity extends AppCompatActivity implements View.OnCli
     private void updateDataKelas() {
         final String tgl_mulai_kls = edit_tgl_mulai_kls.getText().toString().trim();
         final String tgl_akhir_kls = edit_tgl_akhir_kls.getText().toString().trim();
-        final String nama_ins = edit_nama_ins.getText().toString().trim();
-        final String nama_mat = edit_nama_mat.getText().toString().trim();
+        final String id_ins = edit_id_ins.getText().toString().trim();
+        final String id_mat = edit_id_mat.getText().toString().trim();
 
         class UpdateDataKelas extends AsyncTask<Void, Void, String>{
             ProgressDialog loading;
@@ -223,8 +223,9 @@ public class KelasDetailActivity extends AppCompatActivity implements View.OnCli
                 HashMap<String, String> kelas = new HashMap<>();
                 kelas.put("tgl_mulai_kls", tgl_mulai_kls);
                 kelas.put("tgl_akhir_kls", tgl_akhir_kls);
-                kelas.put("nama_ins", nama_ins);
-                kelas.put("nama_mat", nama_mat);
+                kelas.put("id_kls", id_kls);
+                kelas.put("id_ins", id_ins);
+                kelas.put("id_mat", id_mat);
 
                 HttpHandler handler = new HttpHandler();
                 String result = handler.sendPostRequest(Konfigurasi.URL_KELAS_UPDATE, kelas);
