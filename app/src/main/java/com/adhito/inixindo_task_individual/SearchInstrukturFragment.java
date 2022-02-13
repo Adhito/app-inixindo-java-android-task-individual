@@ -26,10 +26,10 @@ import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SearchPesertaFragment#newInstance} factory method to
+ * Use the {@link SearchInstrukturFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SearchPesertaFragment extends Fragment implements MainActivity.OnBackPressedListener, View.OnClickListener, AdapterView.OnItemClickListener{
+public class SearchInstrukturFragment extends Fragment implements MainActivity.OnBackPressedListener, View.OnClickListener, AdapterView.OnItemClickListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,13 +46,13 @@ public class SearchPesertaFragment extends Fragment implements MainActivity.OnBa
     private String JSON_STRING;
     private ProgressDialog loading;
 
-    public SearchPesertaFragment() {
+    public SearchInstrukturFragment() {
         // Required empty public constructor
     }
-
+    
     // TODO: Rename and change types and number of parameters
-    public static SearchPesertaFragment newInstance(String param1, String param2) {
-        SearchPesertaFragment fragment = new SearchPesertaFragment();
+    public static SearchInstrukturFragment newInstance(String param1, String param2) {
+        SearchInstrukturFragment fragment = new SearchInstrukturFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,20 +60,12 @@ public class SearchPesertaFragment extends Fragment implements MainActivity.OnBa
         return fragment;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_search_peserta, container, false);
+        View view = inflater.inflate(R.layout.fragment_search_instruktur, container, false);
 
         edit_search = view.findViewById(R.id.edit_search);
 
@@ -99,14 +91,14 @@ public class SearchPesertaFragment extends Fragment implements MainActivity.OnBa
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(getContext(), "Querying peserta data ... ", "Please wait ...", false, false);
+                loading = ProgressDialog.show(getContext(), "Querying data instruktur ... ", "Please wait ...", false, false);
             }
 
             // Override doInBackground (Ctrl + O select the doInBackground)
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetResponse(Konfigurasi.URL_SEARCH_PESERTA,val);
+                String result = handler.sendGetResponse(Konfigurasi.URL_SEARCH_INSTRUKTUR,val);
                 return result;
             }
 
@@ -136,19 +128,16 @@ public class SearchPesertaFragment extends Fragment implements MainActivity.OnBa
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject object = jsonArray.getJSONObject(i);
-                String id_pst = object.getString("id_pst");
-                String nama_pst = object.getString("nama_pst");
-                String email_pst = object.getString("email_pst");
-                String hp_pst = object.getString("hp_pst");
-                String instansi_pst = object.getString("instansi_pst");
+                String id_ins = object.getString("id_ins");
+                String nama_ins = object.getString("nama_ins");
+                String email_ins = object.getString("email_ins");
+                String hp_ins = object.getString("hp_ins");
 
                 HashMap<String, String> res = new HashMap<>();
-                res.put("id_pst", id_pst);
-                res.put("nama_pst", nama_pst);
-                res.put("email_pst", email_pst);
-                res.put("hp_pst", hp_pst);
-                res.put("instansi_pst", instansi_pst);
-
+                res.put("id_ins", id_ins);
+                res.put("nama_ins", nama_ins);
+                res.put("email_ins", email_ins);
+                res.put("hp_ins", hp_ins);
 
                 list.add(res);
                 Log.d("RES", String.valueOf(res));
@@ -159,9 +148,9 @@ public class SearchPesertaFragment extends Fragment implements MainActivity.OnBa
 
         // Create adapter to put array list to ListView
         ListAdapter adapter = new SimpleAdapter(
-                getContext(), list, R.layout.activity_list_item_search_peserta,
-                new String[]{"id_pst", "nama_pst", "email_pst", "hp_pst", "instansi_pst"},
-                new int[]{R.id.txt_id_pst, R.id.txt_nama_pst, R.id.txt_email_pst, R.id.txt_hp_pst, R.id.txt_instansi_pst}
+                getContext(), list, R.layout.activity_list_item_search_instruktur,
+                new String[]{"id_ins", "nama_ins", "email_ins", "hp_ins", ""},
+                new int[]{R.id.txt_id_ins, R.id.txt_nama_ins, R.id.txt_email_ins, R.id.txt_hp_ins}
 
         );
         listView.setAdapter(adapter);
