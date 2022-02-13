@@ -1,26 +1,4 @@
-package com.adhito.inixindo_task_individual;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-
-public class DetailKelasDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText edit_id_detail_kls, edit_id_kls, edit_id_pst;
     Button btn_update_detail_kelas, btn_delete_detail_kelas;
@@ -51,29 +29,29 @@ public class DetailKelasDetailActivity extends AppCompatActivity implements View
         class GetJSON extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;
 
-            // Override PreExecute (Ctrl + O select the onPreExecute)
+            // ctrl + o pilih OnPreExcetue
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(DetailKelasDetailActivity.this,
+                loading = ProgressDialog.show(DetailKelasDetail.this,
                         "Mengambil Data", "Harap Menunggu",
                         false, false);
             }
 
-            // Override doInBackground (Ctrl + O select the doInBackground)
+            // Saat proses ambil data terjadi
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetResponse(Konfigurasi.URL_KELAS_DETAIL_GET_DETAIL, id_detail_kls);
+                String result = handler.sendGetResponse(Konfigurasi.DETAIL_KELAS_URL_GET_DETAIL, id_detail_kls);
                 return result;
             }
 
-            // Override onPostExecute (Ctrl + O select the onPostExecute)
+            // ctrl + o pilih OnPostExcetue
             @Override
             protected void onPostExecute(String message) {
                 super.onPostExecute(message);
                 loading.dismiss();
-                // Toast.makeText(DetailKelasDetailActivity.this, message, Toast.LENGTH_LONG).show();
+                Toast.makeText(DetailKelasDetail.this, message, Toast.LENGTH_LONG).show();
                 displayDetailData(message);
 
             }
@@ -119,7 +97,7 @@ public class DetailKelasDetailActivity extends AppCompatActivity implements View
     }
 
     private void confirmDeleteDataDetailKelas() {
-        // Create confirmation using alert dialog
+        //Confirmation using alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Menghapus Data");
         builder.setMessage("Apakah anda yaking menhapus data ini?");
@@ -141,33 +119,30 @@ public class DetailKelasDetailActivity extends AppCompatActivity implements View
         class DeleteDataDetailKelas extends AsyncTask<Void, Void, String>{
             ProgressDialog loading;
 
-            // Override PreExecute (Ctrl + O select the onPreExecute)
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(DetailKelasDetailActivity.this,
+                loading = ProgressDialog.show(DetailKelasDetail.this,
                         "Menghapus data","Harap tunggu",
                         false, false);
             }
 
-            // Override doInBackground (Ctrl + O select the doInBackground)
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetResponse(Konfigurasi.URL_KELAS_DETAIL_DELETE, id_detail_kls);
+                String result = handler.sendGetResponse(Konfigurasi.DETAIL_KELAS_URL_DELETE, id_detail_kls);
                 return result;
             }
 
-            // Override onPostExecute (Ctrl + O select the onPostExecute)
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(DetailKelasDetailActivity.this, "pesan: "+s, Toast.LENGTH_LONG).show();
-
-                // Create redirect to home
-                Intent myIntent = new Intent(DetailKelasDetailActivity.this, MainActivity.class);
-                myIntent.putExtra("KeyName", "Detail_Kelas");
+                Toast.makeText(DetailKelasDetail.this,
+                        "pesan: "+s, Toast.LENGTH_LONG).show();
+                //redirect ke lihat data activity
+                Intent myIntent = new Intent(DetailKelasDetail.this, MainActivity.class);
+                myIntent.putExtra("keyName", "detail_kelas");
                 startActivity(myIntent);
             }
 
@@ -177,21 +152,20 @@ public class DetailKelasDetailActivity extends AppCompatActivity implements View
     }
 
     private void updateDataDetailKelas() {
+//        final String id_detail_kls = edit_id_detail_kls.getText().toString().trim();
         final String id_kls = edit_id_kls.getText().toString().trim();
         final String id_pst = edit_id_pst.getText().toString().trim();
         class UpdateDataDetailKelas extends AsyncTask<Void, Void, String>{
             ProgressDialog loading;
 
-            // Override PreExecute (Ctrl + O select the onPreExecute)
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(DetailKelasDetailActivity.this,
+                loading = ProgressDialog.show(DetailKelasDetail.this,
                         "Mengubah Data", "Harap Tunggu",
                         false, false);
             }
 
-            // Override doInBackground (Ctrl + O select the doInBackground)
             @Override
             protected String doInBackground(Void... voids) {
                 HashMap<String, String> kelas = new HashMap<>();
@@ -201,25 +175,22 @@ public class DetailKelasDetailActivity extends AppCompatActivity implements View
 
 
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendPostRequest(Konfigurasi.URL_KELAS_DETAIL_UPDATE, kelas);
+                String result = handler.sendPostRequest(Konfigurasi.DETAIL_KELAS_URL_UPDATE, kelas);
                 return result;
             }
 
-            // Override onPostExecute (Ctrl + O select the onPostExecute)
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(DetailKelasDetailActivity.this,
+                Toast.makeText(DetailKelasDetail.this,
                         "pesan: "+s, Toast.LENGTH_SHORT).show();
-
-                // Create redirect to previous fragment
-                Intent myIntent = new Intent(DetailKelasDetailActivity.this, MainActivity.class);
-                myIntent.putExtra("KeyName", "Detail_Kelas");
+                //redirect ke lihat data activity
+                Intent myIntent = new Intent(DetailKelasDetail.this, MainActivity.class);
+                myIntent.putExtra("keyName", "detail_kelas");
                 startActivity(myIntent);
             }
         }
         UpdateDataDetailKelas updateDataDetailKelas = new UpdateDataDetailKelas();
         updateDataDetailKelas.execute();
     }
-}

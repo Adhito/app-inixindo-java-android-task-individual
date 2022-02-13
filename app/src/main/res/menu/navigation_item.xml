@@ -38,5 +38,10 @@
             android:icon="@android:drawable/ic_menu_more"
             android:title="Detail Kelas" />
 
+        <item
+            android:id="@+id/nav_detail_kelas_jumlah"
+            android:icon="@android:drawable/ic_menu_more"
+            android:title="Detail Jumlah Peserta" />
+
     </group>
 </menu>

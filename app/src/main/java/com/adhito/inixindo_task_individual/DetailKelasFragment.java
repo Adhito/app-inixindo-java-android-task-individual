@@ -73,22 +73,23 @@ public class DetailKelasFragment extends Fragment implements MainActivity.OnBack
         ActionBar customActionBar = ((MainActivity) getActivity()).getSupportActionBar();
         customActionBar.setTitle("Data Detail Kelas");
 
-//        // Event-handling detailed event view
-//        detailKelasBinding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
-//                Log.d("test","clicked");
-//                Intent myIntent = new Intent(getActivity(), DetailKelasDetailActivity.class);
-//                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(i);
-//                String id_kls = map.get("id_kls").toString();
-//                myIntent.putExtra(Konfigurasi.PGW_ID, id_kls);
-//                Log.d("test",id_kls);
-//                startActivity(myIntent);
-//            }
-//        });
-//
-//        // Event-handling add.fab
-//        detailKelasBinding.addFab.setOnClickListener(this);
+        // Event-handling detailed event view
+        detailKelasBinding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+                // membuka detail
+                Log.d("test","clicked");
+                Intent myIntent = new Intent(getActivity(), DetailKelasDetailActivity.class);
+                HashMap<String, String> map = (HashMap) parent.getItemAtPosition(i);
+                String id_detail_kls = map.get("id_detail_kls").toString();
+                myIntent.putExtra(Konfigurasi.PGW_ID, id_detail_kls);
+                Log.d("test",id_detail_kls);
+                startActivity(myIntent);
+            }
+        });
+
+        // Event-handling add.fab
+        detailKelasBinding.addFab.setOnClickListener(this);
 
         // Get JSON Data
         getJsonData();
@@ -100,7 +101,7 @@ public class DetailKelasFragment extends Fragment implements MainActivity.OnBack
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(view.getContext(), "Mengambil data detail kelas", "Harap menunggu...", false, false);
+                loading = ProgressDialog.show(view.getContext(), "Ambil Data Detail Kelas", "Harap menunggu...", false, false);
             }
 
             // Override doInBackground (Ctrl + O select the doInBackground)
@@ -137,37 +138,33 @@ public class DetailKelasFragment extends Fragment implements MainActivity.OnBack
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject object = jsonArray.getJSONObject(i);
-                String id_kls = object.getString("id_kls");
-                String jum_pst = object.getString("jum_pst");
+                String id_kls = object.getString("k.id_kls");
+                String nama_mat = object.getString("m.nama_mat");
+                String nama_ins = object.getString("i.nama_ins");
+                String id_detail_kls = object.getString("dk.id_detail_kls");
 
                 HashMap<String, String> detailKelas = new HashMap<>();
-                detailKelas.put("id_kls",id_kls);
-                detailKelas.put("jum_pst",jum_pst);
-
+                detailKelas.put("id_kls", id_kls);
+                detailKelas.put("nama_mat", nama_mat);
+                detailKelas.put("nama_ins", nama_ins);
+                detailKelas.put("id_detail_kls",id_detail_kls);
                 list.add(detailKelas);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
-        // Adapter to put array list to ListView
+        // Create adapter to put array list to ListView
         ListAdapter adapter = new SimpleAdapter(
                 view.getContext(), list, R.layout.activity_list_item_detail_kelas,
-                new String[]{"id_kls","jum_pst"},
-                new int[]{R.id.txt_id_kls, R.id.jum_pst}
+                new String[]{"id_detail_kls","nama_mat", "nama_ins"},
+                new int[]{R.id.txt_id, R.id.txt_name_mat,R.id.txt_name_ins}
         );
         detailKelasBinding.listView.setAdapter(adapter);
     }
 
     @Override
-    public void onClick(View v) {
-        // Event-handling add detail class
-        startActivity(new Intent(view.getContext(), DetailKelasTambahActivity.class));
-    }
-
-    @Override
     public void doBack() {
-        // Event-handling back button
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
@@ -177,9 +174,15 @@ public class DetailKelasFragment extends Fragment implements MainActivity.OnBack
     }
 
     @Override
+    public void onClick(View v) {
+        // Event-handling add instructor
+        startActivity(new Intent(view.getContext(), DetailKelasTambahActivity.class));
+    }
+
+    @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         // Event-handling when one of the list is selected
-        Log.d("test","clicked");
+        Log.d("DetailKelasFragment","clicked");
         Intent myIntent = new Intent(getActivity(), DetailKelasFragment.class);
         HashMap<String, String> map = (HashMap) adapterView.getItemAtPosition(i);
         String pgwId = map.get(Konfigurasi.TAG_JSON_ID).toString();

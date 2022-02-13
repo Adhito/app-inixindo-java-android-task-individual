@@ -32,12 +32,13 @@ public class Konfigurasi {
     public static final String URL_KELAS_UPDATE        = "http://192.168.5.83/api_task_individual/update_kelas.php";
     public static final String URL_KELAS_DELETE        = "http://192.168.5.83/api_task_individual/delete_kelas.php?id_kls=";
 
-    // Web API untuk Kelas
-    public static final String URL_KELAS_DETAIL_GET_ALL       = "http://192.168.5.83/api_task_individual/get_all_detail_kelas.php";
-    public static final String URL_KELAS_DETAIL_GET_DETAIL    = "http://192.168.5.83/api_task_individual/get_detail_detail_kelas.php?id_detail_kls=";
-    public static final String URL_KELAS_DETAIL_ADD           = "http://192.168.5.83/api_task_individual/add_detail_kelas.php";
-    public static final String URL_KELAS_DETAIL_UPDATE        = "http://192.168.5.83/api_task_individual/update_detail_kelas.php";
-    public static final String URL_KELAS_DETAIL_DELETE        = "http://192.168.5.83/api_task_individual/delete_detail_kelas.php?id_detail_kls=";
+    // Web API untuk Kelas Detail
+    public static final String URL_KELAS_DETAIL_GET_ALL             = "http://192.168.5.83/api_task_individual/get_all_detail_kelas.php";
+    public static final String URL_KELAS_DETAIL_JUMLAH_GET_ALL      = "http://192.168.5.83/api_task_individual/get_all_detail_kelas_jumlah.php";
+    public static final String URL_KELAS_DETAIL_GET_DETAIL          = "http://192.168.5.83/api_task_individual/get_detail_detail_kelas.php?id_detail_kls=";
+    public static final String URL_KELAS_DETAIL_ADD                 = "http://192.168.5.83/api_task_individual/add_detail_kelas.php";
+    public static final String URL_KELAS_DETAIL_UPDATE              = "http://192.168.5.83/api_task_individual/update_detail_kelas.php";
+    public static final String URL_KELAS_DETAIL_DELETE              = "http://192.168.5.83/api_task_individual/delete_detail_kelas.php?id_detail_kls=";
 
     // key adn value JSON yang muncul di browser
     public static final String KEY_PGW_ID = "id";

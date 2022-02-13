@@ -22,6 +22,7 @@ import com.adhito.inixindo_task_individual.databinding.ActivityMainBinding;
 import java.util.HashMap;
 
 public class InstrukturTambahActivity extends AppCompatActivity implements View.OnClickListener {
+
     private ActivityMainBinding binding;
     EditText edit_id_ins, edit_nama_ins, edit_email_ins, edit_hp_ins, edit_instansi_ins;
     Button btn_tambah_instruktur, btn_lihat_instruktur;

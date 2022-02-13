@@ -103,16 +103,16 @@ public class MainActivity extends AppCompatActivity {
                 fragmentMenu = new KelasFragment();
                 binding.drawer.closeDrawer(GravityCompat.START);
                 callFragment(fragmentMenu);
-                binding.navView.setCheckedItem(R.id.nav_materi);
+                binding.navView.setCheckedItem(R.id.nav_kelas);
                 break;
 
-//            case "detail kelas":
-//                getSupportActionBar().setTitle("Detail Kelas");
-//                fragmentMenu = new DetailKelasFragment();
-//                binding.drawer.closeDrawer(GravityCompat.START);
-//                callFragment(fragmentMenu);
-//                binding.navView.setCheckedItem(R.id.nav_materi);
-//                break;
+            case "Detail_Kelas":
+                getSupportActionBar().setTitle("Detail_Kelas");
+                fragmentMenu = new DetailKelasFragment();
+                binding.drawer.closeDrawer(GravityCompat.START);
+                callFragment(fragmentMenu);
+                binding.navView.setCheckedItem(R.id.nav_detail_kelas);
+                break;
         }
 
         // Drawer Open
@@ -177,6 +177,13 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_detail_kelas:
                         fragment = new DetailKelasFragment();
                         getSupportActionBar().setTitle("Detail Kelas");
+                        binding.drawer.closeDrawer(GravityCompat.START);
+                        callFragment(fragment);
+                        break;
+
+                    case R.id.nav_detail_kelas_jumlah:
+                        fragment = new DetailKelasJumlahPesertaFragment();
+                        getSupportActionBar().setTitle("Detail Jumlah Peserta");
                         binding.drawer.closeDrawer(GravityCompat.START);
                         callFragment(fragment);
                         break;
