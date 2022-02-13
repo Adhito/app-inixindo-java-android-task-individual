@@ -187,6 +187,13 @@ public class MainActivity extends AppCompatActivity {
                         binding.drawer.closeDrawer(GravityCompat.START);
                         callFragment(fragment);
                         break;
+
+                    case R.id.nav_search_peserta:
+                        fragment = new SearchPesertaFragment();
+                        getSupportActionBar().setTitle("Search Peserta Dengan ID");
+                        binding.drawer.closeDrawer(GravityCompat.START);
+                        callFragment(fragment);
+                        break;
                 }
                 return true;
             }

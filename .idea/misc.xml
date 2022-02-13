@@ -16,6 +16,7 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/activity_list_item_detail_kelas.xml" value="0.275" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/activity_list_item_detail_kelas_jumlah.xml" value="0.22407407407407406" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/activity_list_item_kelas.xml" value="0.264" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/activity_list_item_search_peserta.xml" value="0.275" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/activity_materi_detail.xml" value="0.25555555555555554" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/activity_materi_tambah.xml" value="0.25555555555555554" />
@@ -31,6 +32,7 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/fragment_materi.xml" value="0.25555555555555554" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/fragment_peserta.xml" value="0.275" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/fragment_peserta_detail.xml" value="0.275" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/fragment_search_peserta.xml" value="0.275" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/layout/nav_header_layout.xml" value="0.275" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/menu/navigation_item.xml" value="0.275" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/Inixindo_Task_Individual/app/src/main/res/menu/option_menu.xml" value="0.275" />

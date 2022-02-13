@@ -40,6 +40,10 @@ public class Konfigurasi {
     public static final String URL_KELAS_DETAIL_UPDATE              = "http://192.168.5.83/api_task_individual/update_detail_kelas.php";
     public static final String URL_KELAS_DETAIL_DELETE              = "http://192.168.5.83/api_task_individual/delete_detail_kelas.php?id_detail_kls=";
 
+    // Web API untuk Search
+    public static final String URL_SEARCH_PESERTA    = "http://192.168.5.83/api_task_individual/search_peserta.php?id_pst=";
+    public static final String URL_SEARCH_INSTRUKTUR    = "http://192.168.5.83/api_task_individual/search_instruktur.php?id_ins=";
+
     // key adn value JSON yang muncul di browser
     public static final String KEY_PGW_ID = "id";
     public static final String KEY_PGW_NAMA = "name";
