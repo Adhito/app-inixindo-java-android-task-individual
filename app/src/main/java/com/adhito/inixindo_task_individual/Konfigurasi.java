@@ -46,8 +46,11 @@ public class Konfigurasi {
     public static final String TAG_JSON_ARRAY_INSTRUCTOR = "result";
     public static final String TAG_JSON_ID_INSTRUCTOR = "id_ins";
     public static final String TAG_JSON_NAME_INSTRUCTOR = "nama_ins";
-    public static final String TAG_JSON_EMAIL_INSTRUCTOR = "instructoremail";
-    public static final String TAG_JSON_PHONE_INSTRUCTOR = "instructorphone";
+
+    public static final String TAG_JSON_ARRAY_PARTICIPANT = "result";
+    public static final String TAG_JSON_ID_PARTICIPANT = "id_pst";
+    public static final String TAG_JSON_NAME_PARTICIPANT = "nama_pst";
+
 
     // key adn value JSON yang muncul di browser
     public static final String KEY_PGW_ID = "id";
