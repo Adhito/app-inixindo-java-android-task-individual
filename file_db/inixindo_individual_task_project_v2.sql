@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 14, 2022 at 02:36 AM
+-- Generation Time: Feb 14, 2022 at 01:05 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -58,7 +58,7 @@ INSERT INTO `tb_detail_kelas` (`id_detail_kls`, `id_kls`, `id_pst`) VALUES
 (18, 2, 18),
 (19, 2, 19),
 (20, 2, 20),
-(114, 113, 113);
+(124, 122, 115);
 
 -- --------------------------------------------------------
 
@@ -98,14 +98,7 @@ INSERT INTO `tb_instruktur` (`id_ins`, `nama_ins`, `email_ins`, `hp_ins`) VALUES
 (18, 'Instruktur_0018', 'Instruktur_0018@gmail.com', '620000000018'),
 (19, 'Instruktur_0019', 'Instruktur_0019@gmail.com', '620000000019'),
 (20, 'Instruktur_0020', 'Instruktur_0020@gmail.com', '620000000020'),
-(104, 'Instruktur_0104', 'email@gmail.com', '104'),
-(105, 'Instruktur_0105', '', ''),
-(107, 'Instruktur_0107', '', ''),
-(108, 'Instruktur_0108', 'email_instruktur@gmail.com', '620000000108'),
-(109, 'Instruktur_0109', 'email_instruktur@gmail.com', '620000000109'),
-(110, 'Instruktur_0110', 'Instruktur_0110@gmail.com', '620000000110'),
-(111, 'asddadsz', '', ''),
-(112, 'czxczxcxz', '', '');
+(113, 'Instruktur Baru 113', 'email@gmail.com', '081234');
 
 -- --------------------------------------------------------
 
@@ -127,11 +120,11 @@ CREATE TABLE `tb_kelas` (
 
 INSERT INTO `tb_kelas` (`id_kls`, `tgl_mulai_kls`, `tgl_akhir_kls`, `id_ins`, `id_mat`) VALUES
 (1, '2022-01-01', '2022-06-01', 1, 1),
-(2, '2022-01-01', '2022-06-01', 1, 2),
-(3, '2022-01-01', '2022-06-01', 1, 3),
-(4, '2022-01-01', '2022-06-01', 1, 4),
-(5, '2022-01-01', '2022-06-01', 1, 5),
-(6, '2022-02-02', '2022-06-02', 2, 1),
+(2, '2022-01-01', '2022-06-02', 1, 2),
+(3, '2022-01-01', '2022-06-03', 1, 3),
+(4, '2022-01-01', '2022-06-04', 1, 4),
+(5, '2022-01-01', '2022-06-05', 1, 5),
+(6, '2022-02-02', '2022-06-06', 2, 1),
 (7, '2022-01-01', '2022-06-01', 2, 2),
 (8, '2022-01-01', '2022-06-01', 2, 3),
 (9, '2022-01-01', '2022-06-01', 2, 4),
@@ -146,12 +139,8 @@ INSERT INTO `tb_kelas` (`id_kls`, `tgl_mulai_kls`, `tgl_akhir_kls`, `id_ins`, `i
 (18, '2022-01-01', '2022-06-01', 3, 3),
 (19, '2022-01-01', '2022-06-01', 3, 4),
 (20, '2022-01-01', '2022-06-01', 3, 5),
-(106, '2024-01-01', '2024-06-01', 1, 1),
-(108, '0000-00-00', '0000-00-00', 1, 108),
-(109, '2024-01-01', '2024-06-01', 1, 109),
-(110, '2024-01-01', '2024-06-01', 1, 1),
-(111, '2022-01-01', '2022-06-01', 111, 111),
-(113, '0000-00-00', '0000-00-00', 112, 112);
+(121, '2024-02-14', '2025-02-14', 113, 113),
+(122, '2024-02-14', '2025-02-14', 113, 113);
 
 -- --------------------------------------------------------
 
@@ -189,13 +178,7 @@ INSERT INTO `tb_materi` (`id_mat`, `nama_mat`) VALUES
 (18, 'Materi_00018'),
 (19, 'Materi_00019'),
 (20, 'Materi_00020'),
-(106, 'Test'),
-(107, 'Test'),
-(108, 'Test'),
-(109, 'Test'),
-(110, 'Test'),
-(111, 'Materi_0111'),
-(112, 'Materi_0112');
+(113, 'Materi Baru 113');
 
 -- --------------------------------------------------------
 
@@ -236,12 +219,9 @@ INSERT INTO `tb_peserta` (`id_pst`, `nama_pst`, `email_pst`, `hp_pst`, `instansi
 (18, 'Peserta_0018', 'Peserta_0018@gmail.com', '620000000018', 'Instansi_0001'),
 (19, 'Peserta_0019', 'Peserta_0019@gmail.com', '620000000019', 'Instansi_0001'),
 (20, 'Peserta_0020', 'Peserta_0020@gmail.com', '620000000020', 'Instansi_0002'),
-(107, 'Peserta_0107', 'email@gmail.com', '0107', 'Instansi_10'),
-(108, 'Peserta_0108', '', '', ''),
-(109, 'Peserta_0109', 'email@gmail.com', '0109', 'Instansi_10'),
-(110, 'Peserta_0110', 'Peserta_0110@gmail.com', '620000000110', 'Instansi_0110'),
-(112, '0112', 'email@gmail.com', '0112', '011'),
-(113, 'Peserta_0113', 'Peserta_0113@gmail.com', '620000000113', 'Instansi_0113');
+(113, 'Peserta_0113', 'Peserta_0113@gmail.com', '620000000113', 'Instansi_0113'),
+(114, 'Peserta_0114', 'email@gmail.com', '082214', 'Instansi_0114'),
+(115, 'dito', 'email@gmail.com', '081234567', 'Instansi-1');
 
 --
 -- Indexes for dumped tables
@@ -289,31 +269,31 @@ ALTER TABLE `tb_peserta`
 -- AUTO_INCREMENT for table `tb_detail_kelas`
 --
 ALTER TABLE `tb_detail_kelas`
-  MODIFY `id_detail_kls` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `id_detail_kls` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
 -- AUTO_INCREMENT for table `tb_instruktur`
 --
 ALTER TABLE `tb_instruktur`
-  MODIFY `id_ins` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `id_ins` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT for table `tb_kelas`
 --
 ALTER TABLE `tb_kelas`
-  MODIFY `id_kls` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id_kls` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT for table `tb_materi`
 --
 ALTER TABLE `tb_materi`
-  MODIFY `id_mat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `id_mat` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT for table `tb_peserta`
 --
 ALTER TABLE `tb_peserta`
-  MODIFY `id_pst` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id_pst` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- Constraints for dumped tables
@@ -330,8 +310,8 @@ ALTER TABLE `tb_detail_kelas`
 -- Constraints for table `tb_kelas`
 --
 ALTER TABLE `tb_kelas`
-  ADD CONSTRAINT `tb_kelas_ibfk_1` FOREIGN KEY (`id_ins`) REFERENCES `tb_instruktur` (`id_ins`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tb_kelas_ibfk_2` FOREIGN KEY (`id_mat`) REFERENCES `tb_materi` (`id_mat`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tb_kelas_ibfk_1` FOREIGN KEY (`id_ins`) REFERENCES `tb_instruktur` (`id_ins`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `tb_kelas_ibfk_2` FOREIGN KEY (`id_mat`) REFERENCES `tb_materi` (`id_mat`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
