@@ -43,6 +43,11 @@ public class Konfigurasi {
     // Web API untuk Search
     public static final String URL_SEARCH_PESERTA    = "http://192.168.5.93/api_task_individual/search_peserta.php?id_pst=";
     public static final String URL_SEARCH_INSTRUKTUR    = "http://192.168.5.93/api_task_individual/search_instruktur.php?id_ins=";
+    public static final String TAG_JSON_ARRAY_INSTRUCTOR = "result";
+    public static final String TAG_JSON_ID_INSTRUCTOR = "id_ins";
+    public static final String TAG_JSON_NAME_INSTRUCTOR = "nama_ins";
+    public static final String TAG_JSON_EMAIL_INSTRUCTOR = "instructoremail";
+    public static final String TAG_JSON_PHONE_INSTRUCTOR = "instructorphone";
 
     // key adn value JSON yang muncul di browser
     public static final String KEY_PGW_ID = "id";

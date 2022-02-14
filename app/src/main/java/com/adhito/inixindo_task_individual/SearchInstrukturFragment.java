@@ -6,11 +6,15 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -24,12 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SearchInstrukturFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class SearchInstrukturFragment extends Fragment implements MainActivity.OnBackPressedListener, View.OnClickListener, AdapterView.OnItemClickListener{
+public class SearchInstrukturFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,17 +38,17 @@ public class SearchInstrukturFragment extends Fragment implements MainActivity.O
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private EditText edit_search;
-    private Button button_search;
-    private View view;
-    private ListView listView;
-    private String JSON_STRING;
-    private ProgressDialog loading;
+
+    ViewGroup viewGroup;
+    String JSON_STRING;
+    EditText search;
+    ListView lvinssearch;
+    ArrayAdapter<String> adapter;
 
     public SearchInstrukturFragment() {
         // Required empty public constructor
     }
-    
+
     // TODO: Rename and change types and number of parameters
     public static SearchInstrukturFragment newInstance(String param1, String param2) {
         SearchInstrukturFragment fragment = new SearchInstrukturFragment();
@@ -60,117 +59,109 @@ public class SearchInstrukturFragment extends Fragment implements MainActivity.O
         return fragment;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_search_instruktur, container, false);
+        viewGroup = (ViewGroup)  inflater.inflate(R.layout.fragment_search_instruktur, container, false);
+        search = viewGroup.findViewById(R.id.instructorSearch);
+        lvinssearch = viewGroup.findViewById(R.id.lv_instructorsearch);
+        getJSONIns();
 
-        edit_search = view.findViewById(R.id.edit_search);
-
-        listView = view.findViewById(R.id.listView);
-
-        button_search = view.findViewById(R.id.button_search);
-        button_search.setOnClickListener(new View.OnClickListener() {
+        search.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View view) {
-                String val = edit_search.getText().toString().trim();
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                adapter.getFilter().filter(charSequence);
+            }
 
-                getData(val);
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
 
-
-        return view;
+        return viewGroup;
     }
 
-    private void getData(String val) {
-        class GetJsonData extends AsyncTask<Void, Void, String> {
-            // Override PreExecute (Ctrl + O select the onPreExecute)
+    private void getJSONIns() {
+        class GetJSON extends AsyncTask<Void, Void, String> {
+            ProgressDialog progressDialog;
+
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(getContext(), "Querying data instruktur ... ", "Please wait ...", false, false);
+                progressDialog = ProgressDialog.show(getContext(), "Getting Data", "Please wait...", false, false);
             }
 
-            // Override doInBackground (Ctrl + O select the doInBackground)
             @Override
             protected String doInBackground(Void... voids) {
                 HttpHandler handler = new HttpHandler();
-                String result = handler.sendGetResponse(Konfigurasi.URL_SEARCH_INSTRUKTUR,val);
+                String result = handler.sendGetResponse(Konfigurasi.URL_INSTRUKTUR_GET_ALL);
+                Log.d("GetData", result);
                 return result;
             }
 
-            // Override onPostExecute (Ctrl + O select the onPostExecute)
             @Override
-            protected void onPostExecute(String message) {
-                super.onPostExecute(message);
-                loading.dismiss();
-                JSON_STRING = message;
-                Log.d("DATA_JSON: ", JSON_STRING);
-                displaySearchResult(JSON_STRING);
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        progressDialog.dismiss();
+                    }
+                }, 1500);
+
+                JSON_STRING = s;
+                Log.d("Data_JSON", JSON_STRING);
+
+                JSONObject jsonObject = null;
+                ArrayList<String> arrayList = new ArrayList<>();
+
+                try {
+                    jsonObject = new JSONObject(JSON_STRING);
+                    JSONArray jsonArray = jsonObject.getJSONArray(Konfigurasi.TAG_JSON_ARRAY_INSTRUCTOR);
+                    Log.d("ass", String.valueOf(jsonArray));
+                    Log.d("Data_JSON_LIST: ", String.valueOf(jsonArray));
+
+
+                    for (int i=0;i<jsonArray.length(); i++){
+                        JSONObject object = jsonArray.getJSONObject(i);
+                        String id = object.getString(Konfigurasi.TAG_JSON_ID_INSTRUCTOR);
+                        String name = object.getString(Konfigurasi.TAG_JSON_NAME_INSTRUCTOR);
+
+
+                        arrayList.add(name);
+                        Log.d("DataArr: ", String.valueOf(name));
+                    }
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+                adapter = new ArrayAdapter<String>(getContext(), R.layout.lv_search_instructor, R.id.lvsearch_instructor_name, arrayList);
+
+                lvinssearch.setAdapter(adapter);
+                Log.d("spin", String.valueOf(arrayList));
+
             }
         }
-        GetJsonData getJsonData = new GetJsonData();
-        getJsonData.execute();
+        GetJSON getJSON = new GetJSON();
+        getJSON.execute();
+
     }
-
-
-    private void displaySearchResult(String json) {
-        JSONObject jsonObject = null;
-        ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
-        Log.d("json",json);
-
-        try {
-            jsonObject = new JSONObject(JSON_STRING);
-            JSONArray jsonArray = jsonObject.getJSONArray(Konfigurasi.TAG_JSON_ARRAY);
-
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject object = jsonArray.getJSONObject(i);
-                String id_ins = object.getString("id_ins");
-                String nama_ins = object.getString("nama_ins");
-                String email_ins = object.getString("email_ins");
-                String hp_ins = object.getString("hp_ins");
-
-                HashMap<String, String> res = new HashMap<>();
-                res.put("id_ins", id_ins);
-                res.put("nama_ins", nama_ins);
-                res.put("email_ins", email_ins);
-                res.put("hp_ins", hp_ins);
-
-                list.add(res);
-                Log.d("RES", String.valueOf(res));
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        // Create adapter to put array list to ListView
-        ListAdapter adapter = new SimpleAdapter(
-                getContext(), list, R.layout.activity_list_item_search_instruktur,
-                new String[]{"id_ins", "nama_ins", "email_ins", "hp_ins", ""},
-                new int[]{R.id.txt_id_ins, R.id.txt_nama_ins, R.id.txt_email_ins, R.id.txt_hp_ins}
-
-        );
-        listView.setAdapter(adapter);
-    }
-
-
-    private void search_data(String val) {
-        Toast.makeText(getContext(), val, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onClick(View view) {
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-    }
-
-    @Override
-    public void doBack() {
-    }
-
 }
