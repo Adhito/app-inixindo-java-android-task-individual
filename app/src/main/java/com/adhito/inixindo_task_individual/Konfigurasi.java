@@ -41,15 +41,20 @@ public class Konfigurasi {
     public static final String URL_KELAS_DETAIL_DELETE              = "http://192.168.5.93/api_task_individual/delete_detail_kelas.php?id_detail_kls=";
 
     // Web API untuk Search
-    public static final String URL_SEARCH_PESERTA    = "http://192.168.5.93/api_task_individual/search_peserta.php?id_pst=";
-    public static final String URL_SEARCH_INSTRUKTUR    = "http://192.168.5.93/api_task_individual/search_instruktur.php?id_ins=";
-    public static final String TAG_JSON_ARRAY_INSTRUCTOR = "result";
-    public static final String TAG_JSON_ID_INSTRUCTOR = "id_ins";
-    public static final String TAG_JSON_NAME_INSTRUCTOR = "nama_ins";
-
-    public static final String TAG_JSON_ARRAY_PARTICIPANT = "result";
-    public static final String TAG_JSON_ID_PARTICIPANT = "id_pst";
-    public static final String TAG_JSON_NAME_PARTICIPANT = "nama_pst";
+    public static final String URL_SEARCH_PESERTA           = "http://192.168.5.93/api_task_individual/search_peserta.php?id_pst=";
+    public static final String URL_SEARCH_INSTRUKTUR        = "http://192.168.5.93/api_task_individual/search_instruktur.php?id_ins=";
+    public static final String URL_SEARCH_DATE              = "http://192.168.5.93/api_task_individual/search_date.php";
+    public static final String TAG_JSON_ARRAY_INSTRUCTOR    = "result";
+    public static final String TAG_JSON_ID_INSTRUCTOR       = "id_ins";
+    public static final String TAG_JSON_NAME_INSTRUCTOR     = "nama_ins";
+    public static final String TAG_JSON_ARRAY_PARTICIPANT   = "result";
+    public static final String TAG_JSON_ID_PARTICIPANT      = "id_pst";
+    public static final String TAG_JSON_NAME_PARTICIPANT    = "nama_pst";
+    public static final String TAG_JSON_ARRAY_DATE          = "search_date";
+    public static final String TAG_JSON_SUBJECTNAME_DATE    = "nama_mat";
+    public static final String TAG_JSON_INSTRUCTORNAME_DATE = "nama_ins";
+    public static final String TAG_JSON_CLASSSTART_DATE     = "tgl_mulai_kls";
+    public static final String TAG_JSON_CLASSEND_DATE       = "tgl_akhir_kls";
 
 
     // key adn value JSON yang muncul di browser

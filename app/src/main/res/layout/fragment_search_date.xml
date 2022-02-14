@@ -3,20 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchInstrukturFragment">
+    android:paddingStart="20dp"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
+    android:paddingEnd="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="20dp"
+    tools:context=".SearchDateFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        android:orientation="vertical"
-        android:paddingStart="20dp"
-        android:paddingLeft="20dp"
-        android:paddingTop="20dp"
-        android:paddingEnd="20dp"
-        android:paddingRight="20dp"
-        android:paddingBottom="20dp">
 
         <ImageView
             android:id="@+id/imageView"
@@ -32,55 +32,56 @@
             android:layout_marginTop="6dp"
             android:layout_marginBottom="6dp"
             android:fontFamily="sans-serif"
-            android:text="Search Peserta"
+            android:text="Search Kelas Berdasarkan Tanggal"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:background="@color/black"
-            android:backgroundTint="#000000"
-            android:visibility="invisible" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:padding="12dp">
 
-            <EditText android:id="@+id/participantSearch"
+            <EditText
+                android:id="@+id/datestartSearch"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:hint="Search participant..."
-                android:inputType="text"/>
+                android:layout_weight="1"
+                android:hint="Tanggal Mulai"
+                android:inputType="text"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/dateendSearch"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Tanggal Mulai"
+                android:inputType="text"
+                android:textAlignment="center" />
+
 
         </LinearLayout>
 
         <!-- TODO: Update blank fragment layout -->
-
+        <Button
+            android:id="@+id/search_date_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="12dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/black"
+            android:text="Search" />
 
         <ListView
-            android:id="@+id/lv_participantsearch"
+            android:id="@+id/lv_datesearch"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
+            android:layout_height="match_parent" />
 
 
     </LinearLayout>
