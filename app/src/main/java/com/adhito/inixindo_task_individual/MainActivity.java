@@ -43,14 +43,6 @@ public class MainActivity extends AppCompatActivity {
         // Custom Toolbar
         setSupportActionBar(binding.toolbar);
 
-//        // Default fragment yang dibuka pertama kali. (menu pada saat aplikasi dibuka)
-//        getSupportActionBar().setTitle("Home");
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.frame_layout, new HomeFragment())
-//                .commit();
-//        binding.navView.setCheckedItem(R.id.nav_home);
-
         // Event-handling after updating/deleting/create
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
