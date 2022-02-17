@@ -1,15 +1,26 @@
 package com.adhito.inixindo_task_individual;
 
 
+import java.text.MessageFormat;
+
 public class Konfigurasi {
     // API URL untuk GET, GET_DETAIL, ADD, UPDATE dan DELETE
 
+    public static final String ip_adress = "192.168.5.93";
+
     // Web API untuk Peserta
-    public static final String URL_PESERTA_GET_ALL       = "http://192.168.5.93/api_task_individual/get_all_peserta.php";
-    public static final String URL_PESERTA_GET_DETAIL    = "http://192.168.5.93/api_task_individual/get_detail_peserta.php?id_pst=";
-    public static final String URL_PESERTA_ADD           = "http://192.168.5.93/api_task_individual/add_peserta.php";
-    public static final String URL_PESERTA_UPDATE        = "http://192.168.5.93/api_task_individual/update_peserta.php";
-    public static final String URL_PESERTA_DELETE        = "http://192.168.5.93/api_task_individual/delete_peserta.php?id_pst=";
+    public static final String URL_PESERTA_GET_ALL       = String.format("http://%s/api_task_individual/get_all_peserta.php", ip_adress);
+    public static final String URL_PESERTA_GET_DETAIL    = String.format("http://%s/api_task_individual/get_detail_peserta.php?id_pst=", ip_adress);
+    public static final String URL_PESERTA_ADD           = String.format("http://%s/api_task_individual/add_peserta.php", ip_adress);
+    public static final String URL_PESERTA_UPDATE        = String.format("http://%s/api_task_individual/update_peserta.php", ip_adress);
+    public static final String URL_PESERTA_DELETE        = String.format("http://%s/api_task_individual/delete_peserta.php?id_pst=", ip_adress);
+
+
+//    public static final String URL_PESERTA_GET_ALL       = "http://192.168.5.93/api_task_individual/get_all_peserta.php";
+//    public static final String URL_PESERTA_GET_DETAIL    = "http://192.168.5.93/api_task_individual/get_detail_peserta.php?id_pst=";
+//    public static final String URL_PESERTA_ADD           = "http://192.168.5.93/api_task_individual/add_peserta.php";
+//    public static final String URL_PESERTA_UPDATE        = "http://192.168.5.93/api_task_individual/update_peserta.php";
+//    public static final String URL_PESERTA_DELETE        = "http://192.168.5.93/api_task_individual/delete_peserta.php?id_pst=";
 
     // Web API untuk Instruktur
     public static final String URL_INSTRUKTUR_GET_ALL       = "http://192.168.5.93/api_task_individual/get_all_instruktur.php";

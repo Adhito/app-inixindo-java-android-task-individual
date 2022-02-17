@@ -89,7 +89,7 @@ public class FormFragment extends Fragment implements View.OnClickListener{
             public void onClick(View view) {
                 String status_vaksinasi = null;
                 String status_antigenpcr = null;
-                String nama = String.valueOf(form_edit_name.getText());
+                    String nama = String.valueOf(form_edit_name.getText());
                 String email = String.valueOf(form_edit_email.getText());
 
                 String spinner_val = spinner.getSelectedItem().toString();
